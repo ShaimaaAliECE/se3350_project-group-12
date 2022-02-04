@@ -16,6 +16,7 @@ nav .nav-brand {
   align-items: center;
   display: flex;
   justify-content: space-between;
+  color: white;
 }
 
 .toolbox label {

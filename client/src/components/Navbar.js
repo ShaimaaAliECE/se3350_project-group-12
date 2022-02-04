@@ -11,12 +11,12 @@ const Navbar = ({ handleLength, handleSpeed, handleAlgo, generateRandomArray, ha
                 <div>
                     <div className='group speed'>
                         <label>Speed</label>
-                        <input type='range' onChange={handleSpeed} min='1' max='10' value={Math.ceil(400 / speed)} disabled={sorting}></input>
+                        <input type='range' onChange={handleSpeed} min='1' max='10' value={Math.ceil(400 / speed)} disabled={sorting}></input>{Math.ceil(400/speed)}
                     </div>
 
                     <div className='group length'>
                         <label>Length</label>
-                        <input type='range' onChange={handleLength} min='5' max={100} step='1' disabled={sorting} value={len}></input>
+                        <input type='range' onChange={handleLength} min='5' max={100} step='1' disabled={sorting} value={len}></input>{len}
                     </div>
                     
                     <select onChange={handleAlgo} disabled={sorting} value={algo}>
