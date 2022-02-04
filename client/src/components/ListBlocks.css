@@ -6,8 +6,8 @@
 }
 
 .listBlocks > .block {
-  background-color: rgb(99, 66, 125);
-  color: #441465;
+  background-color: #444465;
+  color: #444465;
   display: inline-block;
   font-size: 10px;
   font-weight: bold;

@@ -5,6 +5,7 @@ import "./App.css"
 import Navbar from './components/Navbar'
 import ListBlocks from './components/ListBlocks'
 import Legends from './components/Legends'
+import Instructions from './components/Instructions'
 
 // Algorithms
 import bubbleSort from './algorithms/bubbleSort'
@@ -134,6 +135,7 @@ function App() {
 			/>
 
 			<Legends algo={algo}/>
+			<Instructions />
 		</div>
 	);
 }
