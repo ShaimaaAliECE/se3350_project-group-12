@@ -1,20 +1,20 @@
 let order = []
 
-const swap = (arr, i, j) => {
+const swap = (arr, i, j) => { // swap function to swap given elements
     const temp = arr[i]
     arr[i] = arr[j]
     arr[j] = temp
 }
 
-const partition = (dupBlocks, l, r) => {
-    const pivot = l 
+const partition = (dupBlocks, l, r) => { // partition the array 
+    const pivot = l                     
     let j = l 
 
-    for(let i = l + 1;i<=r;i++){
+    for(let i = l + 1;i<=r;i++){        // iterate through unsorted array
         order.push([i, pivot, null, null])
-        if(dupBlocks[i] < dupBlocks[pivot]){
+        if(dupBlocks[i] < dupBlocks[pivot]){ // compare for smaller numbers
             j += 1 
-            swap(dupBlocks, i, j)
+            swap(dupBlocks, i, j)           // swap and save the numbers 
             order.push([i, j, dupBlocks.slice(), null])
         }
     }
@@ -28,19 +28,19 @@ const partition = (dupBlocks, l, r) => {
 
 const quickSortHelper = (dupBlocks, l, r) => {
     if(l >= r) {
-        if(l === r) order.push([null, null, null, l])
+        if(l === r) order.push([null, null, null, l]) // return when array is of one element
         return
     } 
 
-    const pivot = l + Math.floor(Math.random() * (r - l))
+    const pivot = l + Math.floor(Math.random() * (r - l)) // determing pivot
 
-    swap(dupBlocks, l, pivot)
+    swap(dupBlocks, l, pivot)                           
     order.push([l, pivot, dupBlocks.slice(), null])
 
-    const m = partition(dupBlocks, l, r)
+    const m = partition(dupBlocks, l, r) 
 
-    quickSortHelper(dupBlocks, l, m - 1)
-    quickSortHelper(dupBlocks, m + 1, r)
+    quickSortHelper(dupBlocks, l, m - 1) // recursively quickSort left side of array
+    quickSortHelper(dupBlocks, m + 1, r) // recursively quickSort right side of array
 
     return
 }
