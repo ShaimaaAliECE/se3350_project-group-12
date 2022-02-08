@@ -1,12 +1,12 @@
 import React from 'react'
-import './Instructions.css'
 
-const Instructions = () => {
+
+const Game = () => {
     return (
-        <div className='instructions'>
+        <div>
             This is a template for the instructions yet to be written.
         </div>
     )
 }
 
-export default Instructions
+export default Game
