@@ -10,7 +10,7 @@ import LoginSignUp from './components/LoginSignUp'
 
 function App() {
 	// States
-	const [route, setRoute] = useState('Home')
+	const [route, setRoute] = useState('Game')
 
 	const handleRoute = (event) => {
 		setRoute(event.target.value)

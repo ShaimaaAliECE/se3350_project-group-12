@@ -1,0 +1,47 @@
+.table {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.game {
+  color: white;
+}
+
+.progressBar {
+  font-size: 2em;
+}
+
+.question {
+  font-size: 2em;
+  padding-top: 2em;
+}
+
+#centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  padding: 0.2em;
+  align-content: space-evenly;
+  align-items: center;
+}
+
+ul#horizontal-list {
+  list-style: none;
+  padding: 0.2em;
+  padding-top: 5em;
+  padding-bottom: 5em;
+}
+ul#horizontal-list li {
+  display: inline;
+  color: white;
+  background-color: #444465;
+  font-size: 5em;
+  padding: 0.2em;
+  border-radius: 5px;
+  border: none;
+  margin: 0.1em;
+}
