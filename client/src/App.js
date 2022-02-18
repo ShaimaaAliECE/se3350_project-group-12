@@ -22,7 +22,7 @@ function App() {
 		<div className="App">
 
 			{(() => {
-        		switch (route) {
+        		switch (route) {   //return requested page based on state
          			case 'Home':
             			return <Home />
          			case 'Game':
@@ -37,7 +37,7 @@ function App() {
             			return null
         		}
       		})()}
-			<Footer 
+			<Footer  
 				handleRoute={handleRoute}
 				route = {route}
 			/>

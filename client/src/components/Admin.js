@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const Admin = () => {
+const Admin = () => { //admin page yet has to be implemented
     return (
         <div>
             This is a template for the Admin yet to be written.

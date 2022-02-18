@@ -1,7 +1,7 @@
 import React from 'react'
 import './Footer.css'
 
-const Footer = ({handleRoute, route}) =>{
+const Footer = ({handleRoute, route}) =>{ //footer for all pages to allow players to switch between levels
 
     return (
         <footer>
