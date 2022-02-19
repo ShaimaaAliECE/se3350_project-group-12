@@ -20,7 +20,7 @@ const Game = () => {
     const [algo, setAlgo] = useState('Merge');
      
 
-    //this function should return true or false 
+    //this function should return true or false and will be used for level one
     const handleAnswer = () => {
         
         //if the solution is true 
@@ -41,7 +41,7 @@ const Game = () => {
     const handleAnswerChange = (event) => {
         setAnswer(event.target.value)
     }
-
+    //used to create a random array of numbers
     const generateRandomArray = (len) => {
 
 		const randomArray = Array.from(Array(len + 1).keys()).slice(1)

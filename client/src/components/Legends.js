@@ -1,6 +1,6 @@
 import React from 'react'
 import './Legends.css'
-
+//used to create legend
 const Legends = ({algo}) => {
     return (
         <div className='legends'>
