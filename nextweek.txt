@@ -1,1 +1,3 @@
 Will add more specific details involcing the alogorithms in the next step of the project.
+
+Will expand upon the functional and non functional requirements of the project and get the basic level design implemented
