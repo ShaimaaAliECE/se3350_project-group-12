@@ -10,32 +10,32 @@ const Instructions = () => { //instructions page for how to use the application 
             <spacer></spacer>
 
             <h2>Overview:</h2>
-                <body></body>
+                <body> This game lets you visualize and interact with how the MERGE-SORT algorithm would work. Each level will show you or allow you to try implementing the algorithm in theory for yourself.</body>
             
             <spacer></spacer>
 
             <h2>Level 1:</h2>
-                <body></body>
+                <body>Navigating to the HOME page will show you an animation of the MERGE-SORT algorithm in effect, and the visual lets you understand how values are reorganized at each step. This core activity is what you'll be tested on in further levels. </body>
             
             <spacer></spacer>
 
             <h2>Level 2:</h2>
-                <body></body>
+                <body>This level will allow you to get a guided, step-by-step tutorial on how to reorganize values in working with the algorithm with hints! </body>
             
             <spacer></spacer>
                 
             <h2>Level 3:</h2>
-                <body></body>
+                <body>This level throws you into the deep end! You'll be asked to do the same steps, but with no help. Luckily, you'll have fewer numbers and a less complex game situation to deal with.</body>
             
             <spacer></spacer>
     
             <h2>Level 4:</h2>
-                <body></body>
+                <body>This level throws you into the deep end! You'll be asked to do the same steps, but with no help. You'll need to work with a slightly more complex array of values.</body>
             
             <spacer></spacer>
 
             <h2>Level 5:</h2>
-                <body></body>
+                <body>The final round! You'll face the most complex game situation: the highest range of values and the highest number of items. Good luck! </body>
             
             <spacer></spacer>
 
