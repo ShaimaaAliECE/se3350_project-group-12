@@ -1,7 +1,7 @@
 import React from 'react'
 import './Instructions.css'
 
-const Instructions = () => {
+const Instructions = () => { //instructions page for how to use the application and algorithms
     return (
         <div className='instructions'>
 
