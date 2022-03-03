@@ -11,6 +11,8 @@ const Instructions = () => { //instructions page for how to use the application 
 
             <h2>Overview:</h2>
                 <body> This game lets you visualize and interact with how the MERGE-SORT algorithm would work. Each level will show you or allow you to try implementing the algorithm in theory for yourself.</body>
+                <body>The array is recursively divided into two halves till the size becomes 1. Once the size becomes 1, the merge processes come into action and start merging arrays back till the complete array is merged.</body>
+                <body>In doing so, we arrange the items in ascending order with the "nextdoor" values to assure order, and then allow the merging back of values.</body>
             
             <spacer></spacer>
 
