@@ -4,8 +4,6 @@ import React, {useState, useEffect} from 'react'
 const LevelOne = () => {
 
     //states 
-    const [level, setLevel] = useState(1);
-    const [lives, setLives] = useState(3);
     const [len, setLength] = useState(10);
     const [blocks, setBlocks] = useState([]);
     const [answer, setAnswer] = useState([]);
@@ -51,10 +49,7 @@ const LevelOne = () => {
 
     useEffect(() => {
         generateRandomArray(len)
-    }, [len, level, lives, algo])
-
-
-
+    }, [len, algo])
 
     return (
         <div>
