@@ -56,6 +56,18 @@ const Game = () => {
             			return <WinnerLoser lives = {lives} handleReset={() => handleReset()}/>
         		}
       		})()}
+
+
+
+            <div>
+                <button onClick = {() => {setLives(lives+1)}}>Previous Step</button>
+                <button onClick = {() => {setLives(lives-1)}}>Next Step</button>
+            </div>
+            
+
+
+
+            
         </div>
     )
 }

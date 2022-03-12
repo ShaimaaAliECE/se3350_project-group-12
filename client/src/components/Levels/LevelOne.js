@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import MergeSorted from './MergeSorted'
 
 
 const LevelOne = () => {
@@ -68,12 +69,14 @@ const LevelOne = () => {
                 <form onSubmit = {handleAnswer}>
                     <label>
                         Solution: 
-                        <input type = "text" value = {answer} onChange = {handleAnswerChange}/>
+                        <input type = "text" defaultValue = "[]" alue = {answer} onChange = {handleAnswerChange}/>
                     </label>
                     <input type = "submit" value = 'Submit'/>
                 </form>
             </div>
             <p id = "centered">This is the current value of the answer: {answer}</p>
+            <p>Please enter the array(s) </p>
+
         </div>
     )
 }
