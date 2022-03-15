@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import MergeSorted from './MergeSorted'
 
 
 const LevelOne = () => {
@@ -39,6 +40,7 @@ const LevelOne = () => {
         
         //if the solution is true 
         if (answer) {
+            
             
         }
         
@@ -514,7 +516,7 @@ const LevelOne = () => {
                 <form onSubmit = {handleAnswer}>
                     <label>
                         Solution: 
-                        <input type = "text" value = {answer} onChange = {handleAnswerChange}/>
+                        <input type = "text" defaultValue = "[]" alue = {answer} onChange = {handleAnswerChange}/>
                     </label>
                     <input type = "submit" value = 'Submit'/>
                 </form>
