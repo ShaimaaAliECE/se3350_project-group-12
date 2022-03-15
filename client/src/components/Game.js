@@ -12,11 +12,15 @@ const Game = () => {
     const [level, setLevel] = useState(1);
     const [lives, setLives] = useState(3);
     const [algo, setAlgo] = useState('Merge');
+    const [next, setNext] = useState('');
 
     const handleReset = () => {
         setLives(3);
         setLevel(1);
     }
+    if(!level==1 ){
+        setNext( '<button onClick = {() => {setLives(lives+1)}}>Previous Step</button> <button onClick = {() => {setLives(lives-1)}}>Next Step</button>')
+        }
 
     return (
         <div className = 'game' >
@@ -60,8 +64,8 @@ const Game = () => {
 
 
             <div>
-                <button onClick = {() => {setLives(lives+1)}}>Previous Step</button>
-                <button onClick = {() => {setLives(lives-1)}}>Next Step</button>
+                {next}
+                   
             </div>
             
 
