@@ -30,6 +30,7 @@ const onDragEnd = (result, columns, setColumns) => {
     //if the dragged source has not been dropped on to a destination yet
     if (source.droppableId !== destination.droppableId) {
       const sourceColumn = columns[source.droppableId];
+      console.log(sourceColumn.name);
       const destColumn = columns[destination.droppableId];
       const sourceItems = [...sourceColumn.items];
       const destItems = [...destColumn.items];
@@ -141,7 +142,9 @@ const LevelTwo = () => {
                             background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
                             padding: 4,
                             width: 250,
-                            minHeight: 500
+                            minHeight: 75,
+                            display: 'flex', 
+                            flexDirection: 'row'
                           }}
                         >
                           {column.items.map((item, index) => {
@@ -156,8 +159,8 @@ const LevelTwo = () => {
                                       style={{
                                         userSelect: 'none',
                                         padding: 16,
-                                        margin: '0 0 8px 0',
-                                        minHeight: '50px',
+                                        margin: '0 4px 4px 0',
+                                        minHeight: '30px',
                                         backgroundColor: snapshot.isDragging ? '#263B4A' : '#456C86',
                                         color: 'white',
                                         ...provided.draggableProps.style
