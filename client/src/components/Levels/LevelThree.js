@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd'; //allow us the ability to use this library
 import { v4 as uuid } from 'uuid';
 
-//might need to use command "npm add uuid react-beautiful-dnd" to download library locally
+//might need to use command "npm add uuid react-beautiful-dnd" or "npm install react-beautiful-dnd --save" to download library locally
 
 const itemsFromBackend = [
     { id: uuid(), content: 'First task' },
@@ -76,16 +76,16 @@ const LevelTwo = () => {
     const [lives, setLives] = useState(3);
     const [len, setLength] = useState(10);
     const [blocks, setBlocks] = useState([]);
-    const [subblocksA, setBlocksA] = useState([]);
-    const [subblocksB, setBlocksB] = useState([]);
-    const [subblocksC, setBlocksC] = useState([]);
-    const [subblocksD, setBlocksD] = useState([]);
-    const [subblocksE, setBlocksE] = useState([]);
-    const [subblocksF, setBlocksF] = useState([]);
-    const [subblocksG, setBlocksG] = useState([]);
-    const [subblocksH, setBlocksH] = useState([]);
-    const [subblocksI, setBlocksi] = useState([]);
-    const [subblocksJ, setBlocksj] = useState([]);
+    const [subblocksa, setBlocksa] = useState([]);
+    const [subblocksb, setBlocksb] = useState([]);
+    const [subblocksc, setBlocksc] = useState([]);
+    const [subblocksd, setBlocksd] = useState([]);
+    const [subblockse, setBlockse] = useState([]);
+    const [subblocksf, setBlocksf] = useState([]);
+    const [subblocksg, setBlocksg] = useState([]);
+    const [subblocksh, setBlocksh] = useState([]);
+    const [subblocksi, setBlocksi] = useState([]);
+    const [subblocksj, setBlocksj] = useState([]);
     const [subblocks11, setBlocks11] = useState([]);
     const [subblocks12, setBlocks12] = useState([]);
     const [subblocks13, setBlocks13] = useState([]);
