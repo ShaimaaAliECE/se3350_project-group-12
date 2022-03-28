@@ -70,7 +70,7 @@ const onDragEnd = (result, columns, setColumns) => {
     }
 };
 
-const LevelTwo = () => { 
+const LevelThree = () => { 
     //states 
     const [level, setLevel] = useState(2);
     const [lives, setLives] = useState(3);
@@ -115,7 +115,7 @@ const LevelTwo = () => {
       setAnswer(evenT.target.value);
     }
 
-    //generate the random arrya for the user to work with
+    //generate the random array for the user to work with
     const generateRandomArray = (len) => {
 
 		const randomArray = Array.from(Array(len + 1).keys()).slice(1)
@@ -130,7 +130,7 @@ const LevelTwo = () => {
 		//set the blocks to the generated random array
 		setBlocks(randomArray)
 	}
-  //the template of level 2 
+  //the template of level 3 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
         <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
@@ -195,4 +195,4 @@ const LevelTwo = () => {
     )
 }
 
-export default LevelTwo
+export default LevelThree
