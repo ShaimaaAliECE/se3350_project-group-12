@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import './Scoreboard.css'
-import '
 
 const Scoreboard = () =>{
   let lives = 3;
