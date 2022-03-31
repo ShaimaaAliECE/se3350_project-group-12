@@ -66,7 +66,7 @@ const onDragEnd = (result, columns, setColumns) => {
     }
 };
 
-const LevelThree = () => {
+const LevelFour = () => {
 
   const [level, setLevel] = useState(1);
   const [lives, setLives] = useState(3);
@@ -641,4 +641,4 @@ const LevelThree = () => {
     )
 }
 
-export default LevelThree
+export default LevelFour

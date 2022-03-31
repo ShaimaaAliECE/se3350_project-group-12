@@ -95,6 +95,7 @@ const Leveltemplate = () => {
   const [nextCounter,setNC]=useState(1);
   const [mergeCounter, setmergeCounter] = useState(0);
   const [instruct, setInst]=useState('');
+  const [brief]=useState('Arrange the blocks in "Current Set" for what the NEXT iteration of the mergesort algorithm should look like: ');
   const [columns, setColumns] = useState(columnsFromBackend);
     
   const generateRandomArray = (len) => {
@@ -438,6 +439,7 @@ const Leveltemplate = () => {
 
     return (
     <div>
+      <div className = 'question' id = 'centered'>{brief}</div>
       <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
         <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
           {Object.entries(columns).map(([id, column]) => {

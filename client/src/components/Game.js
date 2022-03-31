@@ -3,6 +3,8 @@ import './Game.css'
 import LevelOne from './Levels/LevelOne'
 import LevelTwo from './Levels/LevelTwo'
 import LevelThree from './Levels/LevelThree'
+import LevelFour from './Levels/LevelFour'
+import LevelFive from './Levels/LevelFive'
 import Leveltemplate from './Levels/Leveltemplate'
 import WinnerLoser from './Levels/WinnerLoser'
 
@@ -27,10 +29,12 @@ const Game = () => {
             <h1 id = 'centered'>Welcome, {window.current_user}. Can you sort this?</h1>
 
             <div className = "progressBar">
-                <button onClick = {() => {setLevel(level+1)}}>Next Level</button>
-                <button onClick = {() => {setLevel(level-1)}}>Previous Level</button>
-                <button onClick = {() => {setLives(lives+1)}}>Add lives</button>
-                <button onClick = {() => {setLives(lives-1)}}>Subtract Lives</button>
+                <p>
+                <button onClick = {() => {setLevel(level-1)}}>PREVIOUS LEVEL</button>
+                <button onClick = {() => {setLevel(level+1)}}>NEXT LEVEL</button>
+                <button onClick = {() => {setLives(lives+1)}}>ADD LIFE</button>
+                <button onClick = {() => {setLives(lives-1)}}>SUBTRACT LIFE</button>
+                </p>
                 
                 <div>
                     Lives: {lives} 
@@ -59,9 +63,14 @@ const Game = () => {
           			case 3:
             			return <LevelThree/>
                     case 4:
+                        return <LevelFour/>
+                    case 5:
+                        return <LevelFive/>
+                    case 6:
                         return <Leveltemplate/>
 					default:
             			return <WinnerLoser lives = {lives} handleReset={() => handleReset()}/>
+                        
         		}
       		})()}
 
