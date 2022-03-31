@@ -46,7 +46,7 @@ function Login() {
         setErrorMessages({ name: "pass", message: errors.pass });
       } else {
         setIsSubmitted(true);
-        window.x = uname.value;
+        window.current_user = uname.value;
         ReactDOM.render (<App />,document.getElementById('root'));
         
 

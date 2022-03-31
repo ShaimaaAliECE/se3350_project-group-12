@@ -23,7 +23,7 @@ const Game = () => {
 
     return (
         <div className = 'game' >
-            <h1 id = 'centered'>Welcome, {window.x}. Can you sort this?</h1>
+            <h1 id = 'centered'>Welcome, {window.current_user}. Can you sort this?</h1>
 
             <div className = "progressBar">
                 <button onClick = {() => {setLevel(level+1)}}>Next Level</button>
