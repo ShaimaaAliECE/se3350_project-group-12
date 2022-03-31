@@ -431,9 +431,11 @@ const LevelOne = () => {
             {instruct}
             </div>
             <div id = 'centered'>
+                <p>
                 <button onClick={next}>
-                    Next {nextCounter}
+                    NEXT
                 </button>
+                </p>
             </div>
             
             <div className = 'table'>
