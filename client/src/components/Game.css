@@ -17,6 +17,10 @@
   padding-top: 2em;
 }
 
+.Leveltemplate {
+  color: white;
+}
+
 #centered {
   display: flex;
   align-items: center;

@@ -3,6 +3,7 @@ import './Game.css'
 import LevelOne from './Levels/LevelOne'
 import LevelTwo from './Levels/LevelTwo'
 import LevelThree from './Levels/LevelThree'
+import Leveltemplate from './Levels/Leveltemplate'
 import WinnerLoser from './Levels/WinnerLoser'
 
 const Game = () => {
@@ -57,6 +58,8 @@ const Game = () => {
             			return <LevelTwo/>
           			case 3:
             			return <LevelThree/>
+                    case 4:
+                        return <Leveltemplate/>
 					default:
             			return <WinnerLoser lives = {lives} handleReset={() => handleReset()}/>
         		}

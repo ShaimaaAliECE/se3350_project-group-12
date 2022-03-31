@@ -5,15 +5,16 @@ import { v4 as uuid } from 'uuid';
 //might need to use command "npm add uuid react-beautiful-dnd" or "npm install react-beautiful-dnd --save" to download library locally
 
 const itemsFromBackend = [
-    { id: uuid(), content: 'First task' },
-    { id: uuid(), content: 'Second task' },
-    { id: uuid(), content: 'Third task' },
-    { id: uuid(), content: 'Fourth task' },
-    { id: uuid(), content: 'Fifth task' },
-    { id: uuid(), content: 'Sixth task' },
-    { id: uuid(), content: 'Eighth task' },
-    { id: uuid(), content: 'Ninth task' },
-    { id: uuid(), content: 'Tenth task' },
+  { id: uuid(), content: '1' },
+  { id: uuid(), content: '2' },
+  { id: uuid(), content: '3' },
+  { id: uuid(), content: '4' },
+  { id: uuid(), content: '5' },
+  { id: uuid(), content: '6' },
+  { id: uuid(), content: '7' },
+  { id: uuid(), content: '8' },
+  { id: uuid(), content: '9' },
+  { id: uuid(), content: '10' }
 ];
   
 const columnsFromBackend = {
@@ -148,7 +149,7 @@ const LevelThree = () => {
                           style={{
                             background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
                             padding: 4,
-                            width: 700,
+                            width: 450,
                             minHeight: 75,
                             display: 'flex', 
                             flexDirection: 'row'
