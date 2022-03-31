@@ -455,7 +455,7 @@ const Leveltemplate = () => {
                             background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
                             padding: 4,
                             width: 450,
-                            minHeight: 75,
+                            minHeight: 65,
                             display: 'flex', 
                             flexDirection: 'row'
                           }}
