@@ -1,4 +1,8 @@
-//start recording time as soon as the level begins  
+import React, { useState, useEffect } from 'react'
+import './Timer.css'
+
+const Timer = () =>{
+ //start recording time as soon as the level begins  
  window.onload = startTime;
   
  function startTime(){
@@ -11,3 +15,5 @@
    diff /= 1000; //strip the ms
    var seconds = Math.round(diff); //round to present a less messy number
  }
+}
+export default Timer
