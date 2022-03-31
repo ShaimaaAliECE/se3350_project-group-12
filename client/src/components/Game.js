@@ -5,7 +5,6 @@ import LevelTwo from './Levels/LevelTwo'
 import LevelThree from './Levels/LevelThree'
 import WinnerLoser from './Levels/WinnerLoser'
 
-
 const Game = () => {
 
     //states 
@@ -24,13 +23,14 @@ const Game = () => {
 
     return (
         <div className = 'game' >
-            <h1 id = 'centered'>Can you sort it?</h1>
+            <h1 id = 'centered'>Welcome, {window.x}. Can you sort this?</h1>
 
             <div className = "progressBar">
                 <button onClick = {() => {setLevel(level+1)}}>Next Level</button>
                 <button onClick = {() => {setLevel(level-1)}}>Previous Level</button>
                 <button onClick = {() => {setLives(lives+1)}}>Add lives</button>
                 <button onClick = {() => {setLives(lives-1)}}>Subtract Lives</button>
+                
                 <div>
                     Lives: {lives} 
                 </div>
@@ -42,6 +42,7 @@ const Game = () => {
                 <div>
                     Algorithm: {algo}
                 </div>
+                
             </div>
             
             {

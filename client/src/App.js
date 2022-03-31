@@ -17,7 +17,10 @@ function App() {
 
 	return (
 		<div className="App">
-
+			<Footer  
+				handleRoute={handleRoute}
+				route = {route}
+			/>
 			{(() => {
         		switch (route) {   //return requested page based on state
          			case 'Game':
@@ -28,10 +31,7 @@ function App() {
             			return null
         		}
       		})()}
-			<Footer  
-				handleRoute={handleRoute}
-				route = {route}
-			/>
+
 		</div>
 	);
 }

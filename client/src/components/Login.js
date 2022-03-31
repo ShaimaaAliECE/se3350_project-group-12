@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
 import "./Login.css";
+import App from '../App';
 
 function Login() {
   // React States
@@ -11,12 +12,16 @@ function Login() {
   // User Login info
   const database = [
     {
-      username: "user1",
-      password: "pass1"
+      username: "navid",
+      password: "password"
     },
     {
-      username: "user2",
-      password: "pass2"
+      username: "swarit",
+      password: "password"
+    },
+    {
+      username: "ryan",
+      password: "password"
     }
   ];
 
@@ -41,6 +46,10 @@ function Login() {
         setErrorMessages({ name: "pass", message: errors.pass });
       } else {
         setIsSubmitted(true);
+        window.x = uname.value;
+        ReactDOM.render (<App />,document.getElementById('root'));
+        
+
       }
     } else {
       // Username not found
@@ -85,7 +94,4 @@ function Login() {
   );
 }
 
-export default Login
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(<Login />, rootElement);
+export default Login;
