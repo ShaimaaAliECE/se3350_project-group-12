@@ -1,5 +1,0 @@
-Will add more specific details involving the alogorithms in the next step of the project.
-
-Will expand upon the functional and non functional requirements of the project and get the basic level design implemented
-
-Will make a more functioning game by next week complete the rest of the should haves.
