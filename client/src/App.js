@@ -3,8 +3,6 @@ import "./App.css"
 
 import Instructions from './components/Instructions'
 import Footer from './components/Footer'
-import Home from './components/Home'
-import Admin from './components/Admin'
 import Game from './components/Game'
 
 function App() {

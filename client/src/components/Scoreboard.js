@@ -21,7 +21,7 @@ const Scoreboard = () =>{
     var seconds = Math.round(diff); //round to present a less messy number
   }
   if(!winOrLose){
-     lives -=;
+     lives -= 1;
   }
   if(lives == 0){
     location.reload();
