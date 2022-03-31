@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Game.css'
+import './Timer.js'
 import LevelOne from './Levels/LevelOne'
 import LevelTwo from './Levels/LevelTwo'
 import LevelThree from './Levels/LevelThree'
@@ -15,10 +16,14 @@ const Game = () => {
     const [lives, setLives] = useState(3);
     const [algo, setAlgo] = useState('Merge');
     const [next, setNext] = useState('');
+    const [time, setTime] = useState('Timer');
+
 
     const handleReset = () => {
         setLives(3);
         setLevel(1);
+	time.setHours(0,0,0,0);
+
     }
     if(!level==1 ){
         setNext( '<button onClick = {() => {setLives(lives+1)}}>Previous Step</button> <button onClick = {() => {setLives(lives-1)}}>Next Step</button>')
@@ -46,6 +51,10 @@ const Game = () => {
 
                 <div>
                     Algorithm: {algo}
+                </div>
+                                
+                <div>
+                    Time Elapsed: {time}
                 </div>
                 
             </div>
