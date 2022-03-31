@@ -1,47 +1,43 @@
 import React from 'react'
-import Soundplay from '../Audio'
+import ReactAudioPlayer from 'react-audio-player';
 
+const WinSound = new Audio('/win.mp3');
+const LoseSound = new Audio('/lose.mp3');
+
+const PlayWin = () => {
+    WinSound.load();
+    WinSound.play();
+}
+
+const PlayLose = () => {
+    LoseSound.load();
+    LoseSound.play();
+}
 
 const WinnerLoser = ({lives, handleReset}) => {
 
     
-    const win = () => {
+    const Winner = () => {
         return (<>
             <h1>Winner! You won the game with {lives} lives remaining.</h1>
+            {PlayWin}
             <button onClick = {handleReset}>Try Again</button>
+            <ReactAudioPlayer
+            src="win.mp3"
+            autoPlay
+            />
         </>);
     }
-
-    class Winner extends React.Component {
-        render() {
-          return (
-            <h1>Winner! You won the game with {lives} lives remaining.</h1>,
-            <button onClick = {handleReset}>Try Again</button>,
-            <div>
-              <audio ref="audio_tag" src="/win.mp3" controls autoPlay/>
-            </div>
-          );
-        }
-      }
-
-    class Loser extends React.Component {
-    render() {
-        return (
-        <h1>Winner! You won the game with {lives} lives remaining.</h1>,
-        <button onClick = {handleReset}>Try Again</button>,
-        <div>
-            <h1>Loser. You have no lives remaining</h1>,
-            <button onClick = {handleReset}>Try Again</button>,
-            <audio ref="audio_tag" src="/lose.mp3" controls autoPlay/>
-        </div>
-        );
-    }
-    }
     
-    const lose = () => {
+    const Loser = () => {
         return (<>
             <h1>Loser. You have no lives remaining</h1>
+            {PlayLose}
             <button onClick = {handleReset}>Try Again</button>
+            <ReactAudioPlayer
+            src="lose.mp3"
+            autoPlay
+            />
             </>);
     }
 
