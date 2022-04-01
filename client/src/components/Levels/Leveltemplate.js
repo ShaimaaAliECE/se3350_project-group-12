@@ -30,9 +30,8 @@ const Leveltemplate = () => {
   const [nextCounter,setNC]=useState(1);
   const [mergeCounter, setmergeCounter] = useState(0);
   const [instruct, setInst]=useState('');
-  const [brief]=useState('Arrange the blocks in "Current Set" for what the NEXT iteration of the mergesort algorithm should look like: ');
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [brief]=useState('Enter the segment of the array you expect to occur in the next step below: ');
+  const [Messages, setErrorMessages] = useState({});
     
   const generateRandomArray = (len) => {
 
@@ -370,33 +369,6 @@ const Leveltemplate = () => {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const database = {
       "one": "one",
       "two": "two",
@@ -425,15 +397,14 @@ const Leveltemplate = () => {
     };
   };
 
-  // Generate JSX code for error message
   const renderwrongMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="wrong">{errorMessages.message}</div>
+    name === Messages.name && (
+      <div className="wrong">{Messages.message}</div>
     );
 
   const renderrightMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="right">{errorMessages.message}</div>
+    name === Messages.name && (
+      <div className="right">{Messages.message}</div>
     );
 
   // JSX code for login form
@@ -455,12 +426,16 @@ const Leveltemplate = () => {
     return (
     <div>
 
+      <div id='centered'>
+        <h2>{brief}</h2>
+      </div>
+
       <div id = 'centered'>
             <p>
             <div className="login">
               <div className="login-form">
                 <div className="title">Sign In</div>
-                {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+                {renderForm}
               </div>
             </div>
             </p>
