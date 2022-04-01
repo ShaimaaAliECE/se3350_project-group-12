@@ -5,10 +5,10 @@ import './Game.css'
 import './Timer.js'
 import LevelOne from './Levels/LevelOne'
 import LevelTwo from './Levels/LevelTwo'
-import LevelThree from './Levels/LevelThree'
-import LevelFour from './Levels/LevelFour'
-import LevelFive from './Levels/LevelFive'
-import Leveltemplate from './Levels/Leveltemplate'
+import LevelThree_Main from './Levels/LevelThree_Main'
+import LevelFour_Main from './Levels/LevelFour_Main'
+import LevelFive_Main from './Levels/LevelFive_Main'
+import Leveltemplate from './Levels/LevelTemplate'
 import WinnerLoser from './Levels/WinnerLoser'
 
 const Game = () => {
@@ -72,11 +72,11 @@ const Game = () => {
          			case 2:
             			return <LevelTwo/>
           			case 3:
-            			return <LevelThree/>
+            			return <LevelThree_Main/>
                     case 4:
-                        return <LevelFour/>
+                        return <LevelFour_Main/>
                     case 5:
-                        return <LevelFive/>
+                        return <LevelFive_Main/>
                     case 6:
                         return <Leveltemplate/>
 					default:

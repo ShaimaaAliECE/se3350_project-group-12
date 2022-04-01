@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import "../Login.css";
 
-const Leveltemplate = () => {
+const LevelFive_Main = () => {
 
   const [level, setLevel] = useState(1);
   const [lives, setLives] = useState(3);
@@ -520,11 +520,10 @@ const Leveltemplate = () => {
 
           <div className = 'question' id = 'centered'>
           {answer}
-          {done}
           </div>
 
           <div className = 'question' id = 'centered'>
-          {instruct}
+          {done}
           </div>
           
           <div className = 'table'>
@@ -649,4 +648,4 @@ const Leveltemplate = () => {
     )
   }
 
-export default Leveltemplate
+export default LevelFive_Main
