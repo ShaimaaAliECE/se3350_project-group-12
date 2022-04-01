@@ -50,6 +50,16 @@ input[type="submit"]:hover {
   font-size: 12px;
 }
 
+.wrong {
+  color: red;
+  font-size: 12px;
+}
+
+.right {
+  color: green;
+  font-size: 12px;
+}
+
 .title {
   font-size: 25px;
   margin-bottom: 20px;
