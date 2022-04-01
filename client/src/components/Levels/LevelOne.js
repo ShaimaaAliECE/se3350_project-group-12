@@ -31,9 +31,7 @@ const LevelOne = () => {
     const [algo, setAlgo] = useState('Merge');
     const [nextCounter,setNC]=useState(0);
     const [mergeCounter, setmergeCounter] = useState(0);
-    const [instruct, setInst]=useState('Click next to start');
-    
-     
+    const [instruct, setInst]=useState('Click NEXT below to learn the steps of the mergesort algorithm! ');
 
     //this function should return true or false and will be used for level one
     const handleAnswer = () => {

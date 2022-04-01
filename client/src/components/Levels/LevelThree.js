@@ -95,6 +95,7 @@ const LevelThree = () => {
   const [nextCounter,setNC]=useState(1);
   const [mergeCounter, setmergeCounter] = useState(0);
   const [instruct, setInst]=useState('');
+  const [brief]=useState('Arrange the blocks in "Current Set" for what the NEXT iteration of the mergesort algorithm should look like: ');
   const [columns, setColumns] = useState(columnsFromBackend);
     
   const generateRandomArray = (len) => {
@@ -146,14 +147,14 @@ const LevelThree = () => {
     let inst = '';
 
     if(nextCounter==1){
-        inst='first the first half of the array is copied into a sub array'
+        inst=''
         setInst(inst);  
         storeArray(a1,a2,0,4);
         setBlocksa(a2);  
     }
     else 
     if(nextCounter==2){  
-        inst='this array is then split in half until the resulting array is length 1'
+        inst=''
         setInst(inst); 
         storeArray(a1,a3,0,2);
         setBlocksb(a3);    
@@ -164,7 +165,7 @@ const LevelThree = () => {
         setBlocksc(a4);   
     }
     if(nextCounter==4){
-        inst='this array is then split in half until the resulting array is length 1'
+        inst=''
         setInst(inst); 
         let a5=[];
         storeArray(a1,a5,0,0);
@@ -172,7 +173,7 @@ const LevelThree = () => {
         
     }
     if(nextCounter==5){
-        inst='the other half of the array is then put into a sub array'
+        inst=''
         setInst(inst); 
        let a6=[];
         storeArray(a1,a6,1,1);
@@ -180,7 +181,7 @@ const LevelThree = () => {
         
     }
     if(nextCounter==6){
-        inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
+        inst=''
         setInst(inst);
         //first merge
         merge(a1,0,0,1);
@@ -191,7 +192,7 @@ const LevelThree = () => {
         
     }
     if(nextCounter==7){
-        inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array, the length of this array is one so its finnished'
+        inst=''
         setInst(inst);
     let a7=[];
     storeArray(a1,a7,2,2);
@@ -200,7 +201,7 @@ const LevelThree = () => {
     }
     if(nextCounter==8){
         //second merge
-        inst='these 2 sub arrays are then sorted and merged into the previous array'
+        inst=''
         setInst(inst);
         merge(a1,0,1,2);
         storeArray(a1,a3,0,2);    
@@ -208,7 +209,7 @@ const LevelThree = () => {
             
     }
     if(nextCounter==9){
-        inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array'
+        inst=''
         setInst(inst);
 
         storeArray(a1,a8,3,4);
@@ -216,7 +217,7 @@ const LevelThree = () => {
             
     }
     if(nextCounter==10){
-        inst='this array is then split in half until the resulting array is length 1'
+        inst=''
         setInst(inst); 
         let a9=[];
         storeArray(a1,a9,3,3);
@@ -224,7 +225,7 @@ const LevelThree = () => {
             
     }
     if(nextCounter==11){
-        inst='the other half of the  array is then put into a sub array'
+        inst=''
         setInst(inst);
         let a10=[];
         storeArray(a1,a10,4,4);
@@ -232,7 +233,7 @@ const LevelThree = () => {
             
     }
     if(nextCounter==12){
-        inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
+        inst=''
         setInst(inst);
         merge(a1,3,3,4);
         storeArray(a1,a8,3,4);  
@@ -242,7 +243,7 @@ const LevelThree = () => {
             
     }
     if(nextCounter==13){
-        inst='these 2 sorted arrays are merged into their parent array and sorted'
+        inst=''
         setInst(inst);
         merge(a1,0,2,4);
         storeArray(a1,a2,0,4);
@@ -252,7 +253,7 @@ const LevelThree = () => {
             
     }
     if(nextCounter==14){
-        inst='The original array is now the olldest unsorted array so its unsorted half is taken and put into a sub array'
+        inst=''
         setInst(inst);
 
         storeArray(a1,a11,5,9);
@@ -260,7 +261,7 @@ const LevelThree = () => {
 
     }
     if(nextCounter==15){
-        inst='this array is then split in half until the resulting array is length 1'
+        inst=''
         setInst(inst);
     storeArray(a1,a12,5,7);
     setBlocks11(a12);
@@ -278,14 +279,14 @@ const LevelThree = () => {
         setBlocks13(a14);
     }
     if(nextCounter==18){  
-        inst='the other half of the array is then put into a sub array'
+        inst=''
         setInst(inst);
         let a15=[];
         storeArray(a1,a15,6,6);
         setBlocks14(a15);
     }
     if(nextCounter==19){
-        inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
+        inst=''
         setInst(inst);
         merge(a1,5,5,6);
         storeArray(a1,a13,5,6);
@@ -295,7 +296,7 @@ const LevelThree = () => {
 
     }
     if(nextCounter==20){
-        inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array, the length of this array is one so its finnished'
+        
         setInst(inst);
         let a16=[];
         storeArray(a1,a16,7,7);
@@ -304,7 +305,7 @@ const LevelThree = () => {
     }
 
     if(nextCounter==21){
-        inst='these 2 sub arrays are then sorted and merged into the previous array'
+        
         setInst(inst);
         merge(a1,5,6,7);
         storeArray(a1,a12,5,7);
@@ -315,7 +316,7 @@ const LevelThree = () => {
 
     }
     if(nextCounter==22){
-        inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array'
+        
         setInst(inst);
 
         storeArray(a1,a17,8,9);
@@ -323,7 +324,7 @@ const LevelThree = () => {
 
     }
     if(nextCounter==23){
-        inst='this array is then split in half until the resulting array is length 1'
+        
         setInst(inst);
         let a18=[];
         storeArray(a1,a18,8,8);
@@ -331,7 +332,7 @@ const LevelThree = () => {
 
     }
     if(nextCounter==24){
-        inst='the other half of the array is then put into a sub array'
+        
         setInst(inst);
         let a19=[];
         storeArray(a1,a19,9,9);
@@ -339,7 +340,7 @@ const LevelThree = () => {
 
     }
     if(nextCounter==25){
-        inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
+        
         setInst(inst);
         merge(a1,8,8,9);
         storeArray(a1,a17,8,9);
@@ -350,7 +351,7 @@ const LevelThree = () => {
 
     }
     if(nextCounter==26){
-        inst='these 2 sorted arrays are merged into their parent array and sorted'
+        
         setInst(inst);
         merge(a1,5,7,9);
         storeArray(a1,a11,5,9);
@@ -361,7 +362,7 @@ const LevelThree = () => {
 
     }
     if(nextCounter==27){
-        inst='finaly the parent array is the only unsorted array, the 2 sub arrays are merged and sored resulting in the final array'
+       
         setInst(inst);
 
         merge(a1,0,4,9);
@@ -369,7 +370,7 @@ const LevelThree = () => {
 
     }
     if(nextCounter==28){
-        inst='This level is now finished, click next level to proced to the next or reload the page to replay this level'
+        inst='This level is now finished. Click NEXT LEVEL to proceed to the next or reload the page to replay this level. '
         setInst(inst);
 
     }
@@ -438,6 +439,7 @@ const LevelThree = () => {
 
     return (
     <div>
+      <div className = 'question' id = 'centered'>{brief}</div>
       <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
         <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
           {Object.entries(columns).map(([id, column]) => {

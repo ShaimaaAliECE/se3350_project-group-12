@@ -1,7 +1,72 @@
 import React, {useState, useEffect} from 'react'
-import "../Login.css";
+import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
+import { v4 as uuid } from 'uuid';
 
-const Leveltemplate = () => {
+const itemsFromBackend = [
+  { id: uuid(), content: '1' },
+  { id: uuid(), content: '2' },
+  { id: uuid(), content: '3' },
+  { id: uuid(), content: '4' },
+  { id: uuid(), content: '5' },
+  { id: uuid(), content: '6' },
+  { id: uuid(), content: '7' },
+  { id: uuid(), content: '8' },
+  { id: uuid(), content: '9' },
+  { id: uuid(), content: '10' }
+];
+
+const columnsFromBackend = {
+  [uuid()]: {
+    name: 'Values',
+    items: itemsFromBackend
+  },
+  [uuid()]: {
+    name: 'Current Set',
+    items: []
+  }
+};
+
+const onDragEnd = (result, columns, setColumns) => {
+  //default statement; if there is no specified destination for the result or the matched destination of the result is not correct, then return nothing
+    if (!result.destination) return;
+    const { source, destination } = result;
+    //if the dragged source has not been dropped on to a destination yet
+    if (source.droppableId !== destination.droppableId) {
+      const sourceColumn = columns[source.droppableId];
+      console.log(sourceColumn.name);
+      const destColumn = columns[destination.droppableId];
+      const sourceItems = [...sourceColumn.items];
+      const destItems = [...destColumn.items];
+      const [removed] = sourceItems.splice(source.index, 1);
+      destItems.splice(destination.index, 0, removed);
+      setColumns({ 
+        ...columns,
+        [source.droppableId]: {
+          ...sourceColumn,
+          items: sourceItems
+        },
+        [destination.droppableId]: {
+          ...destColumn,
+          items: destItems
+        }
+      })
+  
+    } else {
+      const column = columns[source.droppableId];
+      const copiedItems = [...column.items];
+      const [removed] = copiedItems.splice(source.index, 1);
+      copiedItems.splice(destination.index, 0, removed);
+      setColumns({
+        ...columns,
+        [source.droppableId]: {
+          ...column,
+          items: copiedItems
+        }
+      })
+    }
+};
+
+const LevelTwo = () => {
 
   const [level, setLevel] = useState(1);
   const [lives, setLives] = useState(3);
@@ -17,55 +82,21 @@ const Leveltemplate = () => {
   const [subblocksh, setBlocksh] = useState([]);
   const [subblocksi, setBlocksi] = useState([]);
   const [subblocksj, setBlocksj] = useState([]);
-  const [subblocks11, setBlocks11]= useState([]);
-  const [subblocks12, setBlocks12]= useState([]);
-  const [subblocks13, setBlocks13]= useState([]);
-  const [subblocks14, setBlocks14]= useState([]);
-  const [subblocks15, setBlocks15]= useState([]);
-  const [subblocks16, setBlocks16]= useState([]);
-  const [subblocks17, setBlocks17]= useState([]);
-  const [subblocks18, setBlocks18]= useState([]);
+  const [subblocks11, setBlocks11]= useState([])
+  const [subblocks12, setBlocks12]= useState([])
+  const [subblocks13, setBlocks13]= useState([])
+  const [subblocks14, setBlocks14]= useState([])
+  const [subblocks15, setBlocks15]= useState([])
+  const [subblocks16, setBlocks16]= useState([])
+  const [subblocks17, setBlocks17]= useState([])
+  const [subblocks18, setBlocks18]= useState([])
   const [answer, setAnswer] = useState([]);
   const [algo, setAlgo] = useState('Merge');
   const [nextCounter,setNC]=useState(1);
   const [mergeCounter, setmergeCounter] = useState(0);
   const [instruct, setInst]=useState('');
-  const [brief]=useState('Enter the segment of the array you expect to occur in the next step below: ');
-  const [Messages, setErrorMessages] = useState({});
-  const [database] = useState({
-    "k0": " ",
-    "k1": " ",
-    "k2": " ",
-    "k3": " ",
-    "k4": " ",
-    "k5": " ",
-    "k6": " ",
-    "k7": " ",
-    "k8": " ",
-    "k9": " ",
-    "k10": " ",
-    "k11": " ",
-    "k12": " ",
-    "k13": " ",
-    "k14": " ",
-    "k15": " ",
-    "k16": " ",
-    "k17": " ",
-    "k18": " ",
-    "k19": " ",
-    "k20": " ",
-    "k21": " ",
-    "k22": " ",
-    "k23": " ",
-    "k24": " ",
-    "k25": " ",
-    "k26": " ",
-    "k27": " "
-    });
-    const [errors] = useState({
-      wrong: "wrong answer :(",
-      right: "correct!"
-    });
+  const [brief]=useState('Arrange the blocks in "Current Set" for what the NEXT iteration of the mergesort algorithm should look like: ');
+  const [columns, setColumns] = useState(columnsFromBackend);
     
   const generateRandomArray = (len) => {
 
@@ -82,7 +113,10 @@ const Leveltemplate = () => {
     setBlocks(randomArray)
 	}
 
-  useEffect(() => {generateRandomArray(len)}, [len, level, lives, algo])
+  useEffect(() => {
+      generateRandomArray(len)
+      
+  }, [len, level, lives, algo])
 
   const next = ()=>{//wip
       
@@ -114,20 +148,16 @@ const Leveltemplate = () => {
 
     if(nextCounter==1){
         inst='first the first half of the array is copied into a sub array'
-        //setInst(inst); 
+        setInst(inst);  
         storeArray(a1,a2,0,4);
         setBlocksa(a2);  
-        database.k1 = (a2.toString()); 
-        setInst(database.k1); 
     }
     else 
     if(nextCounter==2){  
         inst='this array is then split in half until the resulting array is length 1'
-        //setInst(inst); 
+        setInst(inst); 
         storeArray(a1,a3,0,2);
-        setBlocksb(a3);  
-        database.k1 = (a3.toString()); 
-        setInst(database.k1);   
+        setBlocksb(a3);    
     }
     if(nextCounter==3){
         
@@ -407,64 +437,75 @@ const Leveltemplate = () => {
 
     }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    var { answer } = document.forms[0];
-
-    if (database.k1 !== answer.value) {
-      setErrorMessages({ name: "wrong", message: errors.wrong });
-    } 
-    else {
-      setErrorMessages({ name: "right", message: errors.right });
-      next();
-    };
-  };
-
-  const renderwrongMessage = (name) =>
-    name === Messages.name && (
-      <div className="wrong">{Messages.message}</div>
-    );
-  const renderrightMessage = (name) =>
-    name === Messages.name && (
-      <div className="right">{Messages.message}</div>
-    );
-
-  const renderForm = (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <input type="text" name="answer" required />
-          {renderwrongMessage("wrong")}
-          {renderrightMessage("right")}
-        </div>
-        <div className="button-container">
-          <input type="submit" />
-        </div>
-      </form>
-    </div>
-  );
-
-  const renderrender =(
-    <div className="login">
-      <div className="login-form">
-          {renderForm}
-        </div>
-    </div>
-  );
-
-//--------------------------------------------------------------------------------------------------------
-
     return (
     <div>
-
-      <div id='centered'>
-        <h2>{brief}</h2>
+      <div className = 'question' id = 'centered'>{brief}</div>
+      <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
+        <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
+          {Object.entries(columns).map(([id, column]) => {
+            return (
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <h2>{column.name}</h2>
+                <div style={{ margin: 8 }}>
+                  <Droppable droppableId={id} key={id}>
+                    {(provided, snapshot) => {
+                      return (
+                        <div
+                          {...provided.droppableProps}
+                          ref={provided.innerRef}
+                          style={{
+                            background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
+                            padding: 4,
+                            width: 450,
+                            minHeight: 65,
+                            display: 'flex', 
+                            flexDirection: 'row'
+                          }}
+                        >
+                          {column.items.map((item, index) => {
+                            return (
+                              <Draggable key={item.id} draggableId={item.id} index={index}>
+                                {(provided, snapshot) => {
+                                  return (
+                                    <div
+                                      ref={provided.innerRef}
+                                      {...provided.draggableProps}
+                                      {...provided.dragHandleProps}
+                                      style={{
+                                        userSelect: 'none',
+                                        padding: 16,
+                                        margin: '0 4px 4px 0',
+                                        minHeight: '30px',
+                                        backgroundColor: snapshot.isDragging ? '#263B4A' : '#456C86',
+                                        color: 'white',
+                                        ...provided.draggableProps.style
+                                      }}
+                                    >
+                                      {item.content}
+                                    </div>
+                                  )
+                                }}
+                              </Draggable>
+                            );
+                          })}
+                          {provided.placeholder}
+  
+                        </div>
+                      )
+                    }}
+                  </Droppable>
+                </div>
+              </div>
+            )
+          })}
+        </DragDropContext>
       </div>
 
       <div id = 'centered'>
             <p>
-            {renderrender}
+              <button onClick={next}>
+                  SUBMIT 
+              </button>
             </p>
       </div>
 
@@ -598,6 +639,6 @@ const Leveltemplate = () => {
       </div>
     </div>
     )
-  }
+}
 
-export default Leveltemplate
+export default LevelTwo

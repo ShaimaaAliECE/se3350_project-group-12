@@ -30,42 +30,8 @@ const Leveltemplate = () => {
   const [nextCounter,setNC]=useState(1);
   const [mergeCounter, setmergeCounter] = useState(0);
   const [instruct, setInst]=useState('');
-  const [brief]=useState('Enter the segment of the array you expect to occur in the next step below: ');
-  const [Messages, setErrorMessages] = useState({});
-  const [database] = useState({
-    "k0": " ",
-    "k1": " ",
-    "k2": " ",
-    "k3": " ",
-    "k4": " ",
-    "k5": " ",
-    "k6": " ",
-    "k7": " ",
-    "k8": " ",
-    "k9": " ",
-    "k10": " ",
-    "k11": " ",
-    "k12": " ",
-    "k13": " ",
-    "k14": " ",
-    "k15": " ",
-    "k16": " ",
-    "k17": " ",
-    "k18": " ",
-    "k19": " ",
-    "k20": " ",
-    "k21": " ",
-    "k22": " ",
-    "k23": " ",
-    "k24": " ",
-    "k25": " ",
-    "k26": " ",
-    "k27": " "
-    });
-    const [errors] = useState({
-      wrong: "wrong answer :(",
-      right: "correct!"
-    });
+  const [brief]=useState('Arrange the blocks in "Current Set" for what the NEXT iteration of the mergesort algorithm should look like: ');
+  const [allvalues, setValues] = useState([]);
     
   const generateRandomArray = (len) => {
 
@@ -100,6 +66,158 @@ const Leveltemplate = () => {
         window.localStorage['timeSite'] = timeSite;
     }
 
+  const recordvalues =(a1, props)=>{
+
+      let a2=[];
+      let a3=[];
+      let a4=[];
+      let a8=[]; 
+      let a11=[];
+      let a12=[];
+      let a13=[];
+      let a17=[];
+
+      var allsteps = {};
+
+      for(let i = 0; i < props.items.length; i++) {
+    
+      storeArray(a1,a2,0,4);
+        setBlocksa(a2);
+        allsteps.push(<Item key={i} item={a2}/>);
+
+      storeArray(a1,a3,0,2);
+        setBlocksb(a3);   
+        allsteps.push(<Item key={i} item={a3}/>);
+    
+      storeArray(a1,a4,0,1);
+        setBlocksc(a4);   
+        allsteps.push(<Item key={i} item={a4}/>);
+    
+      let a5=[];
+      storeArray(a1,a5,0,0);
+        setBlocksd(a5);
+        allsteps.push(<Item key={i} item={a5}/>);
+
+      let a6=[];
+      storeArray(a1,a6,1,1);
+        setBlockse(a6);
+        allsteps.push(<Item key={i} item={a6}/>);
+        
+        //first merge
+      merge(a1,0,0,1);
+      storeArray(a1,a4,0,1);
+        //merge(a4,0,0,1);
+        setBlocksc(a4);
+        allsteps.push(<Item key={i} item={a4}/>);
+        
+      let a7=[];
+      storeArray(a1,a7,2,2);
+        setBlocksf(a7);
+        allsteps.push(<Item key={i} item={a7}/>);
+        
+      merge(a1,0,1,2);
+      storeArray(a1,a3,0,2);    
+        setBlocksb(a3);
+        allsteps.push(<Item key={i} item={a3}/>);
+            
+      storeArray(a1,a8,3,4);
+        setBlocksg(a8);
+        allsteps.push(<Item key={i} item={a8}/>);
+            
+      let a9=[];
+      storeArray(a1,a9,3,3);
+        setBlocksh(a9);
+        allsteps.push(<Item key={i} item={a9}/>);
+            
+      let a10=[];
+      storeArray(a1,a10,4,4);
+        setBlocksi(a10);
+        allsteps.push(<Item key={i} item={a10}/>);
+            
+      merge(a1,3,3,4);
+      storeArray(a1,a8,3,4);  
+        //merge(a8,3,3,4);
+        setBlocksg(a8);
+        allsteps.push(<Item key={i} item={a8}/>);
+            
+      merge(a1,0,2,4);
+      storeArray(a1,a2,0,4);
+        //merge(a2,0,2,4);
+        setBlocksa(a2);
+        allsteps.push(<Item key={i} item={a2}/>);
+            
+      storeArray(a1,a11,5,9);
+        setBlocksj(a11);
+        allsteps.push(<Item key={i} item={a11}/>);
+
+      storeArray(a1,a12,5,7);
+        setBlocks11(a12);
+        allsteps.push(<Item key={i} item={a12}/>);
+
+      storeArray(a1,a13,5,6);
+        setBlocks12(a13); 
+        allsteps.push(<Item key={i} item={a13}/>);
+
+      let a14=[];
+      storeArray(a1,a14,5,5);
+        setBlocks13(a14);
+        allsteps.push(<Item key={i} item={a14}/>);
+
+      let a15=[];
+      storeArray(a1,a15,6,6);
+        setBlocks14(a15);
+        allsteps.push(<Item key={i} item={a15}/>);
+
+      merge(a1,5,5,6);
+      storeArray(a1,a13,5,6);
+        //merge(a13,5,5,6);
+        setBlocks12(a13); 
+        allsteps.push(<Item key={i} item={a13}/>);
+
+      let a16=[];
+      storeArray(a1,a16,7,7);
+        setBlocks15(a16); 
+        allsteps.push(<Item key={i} item={a16}/>);
+      
+      merge(a1,5,6,7);
+      storeArray(a1,a12,5,7);
+        //merge(a12,5,6,7);
+        setBlocks11(a12);
+        allsteps.push(<Item key={i} item={a12}/>);
+
+      storeArray(a1,a17,8,9);
+        setBlocks16(a17); 
+        allsteps.push(<Item key={i} item={a17}/>);
+
+      let a18=[];
+      storeArray(a1,a18,8,8);
+        setBlocks17(a18); 
+        allsteps.push(<Item key={i} item={a18}/>);
+
+      let a19=[];
+      storeArray(a1,a19,9,9);
+        setBlocks18(a19); 
+        allsteps.push(<Item key={i} item={a19}/>);
+
+      merge(a1,8,8,9);
+      storeArray(a1,a17,8,9);
+        //merge(a17,8,8,9);
+        setBlocks16(a17); 
+        allsteps.push(<Item key={i} item={a17}/>);
+
+      merge(a1,5,7,9);
+      storeArray(a1,a11,5,9);
+        //merge(a11,5,7,9);
+        setBlocksj(a11);
+        allsteps.push(<Item key={i} item={a11}/>);
+
+      merge(a1,0,4,9);
+        setBlocks(a1);
+        allsteps.push(<Item key={i} item={a1}/>);
+
+    }
+    }
+
   const storesubblocks= (a1, nextCounter)=>{
       let a2=[];
       let a3=[];
@@ -114,20 +232,16 @@ const Leveltemplate = () => {
 
     if(nextCounter==1){
         inst='first the first half of the array is copied into a sub array'
-        //setInst(inst); 
+        setInst(inst);  
         storeArray(a1,a2,0,4);
         setBlocksa(a2);  
-        database.k1 = (a2.toString()); 
-        setInst(database.k1); 
     }
     else 
     if(nextCounter==2){  
         inst='this array is then split in half until the resulting array is length 1'
-        //setInst(inst); 
+        setInst(inst); 
         storeArray(a1,a3,0,2);
-        setBlocksb(a3);  
-        database.k1 = (a3.toString()); 
-        setInst(database.k1);   
+        setBlocksb(a3);    
     }
     if(nextCounter==3){
         
@@ -407,64 +521,14 @@ const Leveltemplate = () => {
 
     }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    var { answer } = document.forms[0];
-
-    if (database.k1 !== answer.value) {
-      setErrorMessages({ name: "wrong", message: errors.wrong });
-    } 
-    else {
-      setErrorMessages({ name: "right", message: errors.right });
-      next();
-    };
-  };
-
-  const renderwrongMessage = (name) =>
-    name === Messages.name && (
-      <div className="wrong">{Messages.message}</div>
-    );
-  const renderrightMessage = (name) =>
-    name === Messages.name && (
-      <div className="right">{Messages.message}</div>
-    );
-
-  const renderForm = (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <input type="text" name="answer" required />
-          {renderwrongMessage("wrong")}
-          {renderrightMessage("right")}
-        </div>
-        <div className="button-container">
-          <input type="submit" />
-        </div>
-      </form>
-    </div>
-  );
-
-  const renderrender =(
-    <div className="login">
-      <div className="login-form">
-          {renderForm}
-        </div>
-    </div>
-  );
-
-//--------------------------------------------------------------------------------------------------------
-
     return (
     <div>
 
-      <div id='centered'>
-        <h2>{brief}</h2>
-      </div>
-
       <div id = 'centered'>
             <p>
-            {renderrender}
+              <button onClick={next}>
+                  SUBMIT 
+              </button>
             </p>
       </div>
 

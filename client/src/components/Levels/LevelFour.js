@@ -1,7 +1,72 @@
 import React, {useState, useEffect} from 'react'
-import "../Login.css";
+import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
+import { v4 as uuid } from 'uuid';
 
-const Leveltemplate = () => {
+const itemsFromBackend = [
+  { id: uuid(), content: '1' },
+  { id: uuid(), content: '2' },
+  { id: uuid(), content: '3' },
+  { id: uuid(), content: '4' },
+  { id: uuid(), content: '5' },
+  { id: uuid(), content: '6' },
+  { id: uuid(), content: '7' },
+  { id: uuid(), content: '8' },
+  { id: uuid(), content: '9' },
+  { id: uuid(), content: '10' }
+];
+
+const columnsFromBackend = {
+  [uuid()]: {
+    name: 'Values',
+    items: itemsFromBackend
+  },
+  [uuid()]: {
+    name: 'Current Set',
+    items: []
+  }
+};
+
+const onDragEnd = (result, columns, setColumns) => {
+  //default statement; if there is no specified destination for the result or the matched destination of the result is not correct, then return nothing
+    if (!result.destination) return;
+    const { source, destination } = result;
+    //if the dragged source has not been dropped on to a destination yet
+    if (source.droppableId !== destination.droppableId) {
+      const sourceColumn = columns[source.droppableId];
+      console.log(sourceColumn.name);
+      const destColumn = columns[destination.droppableId];
+      const sourceItems = [...sourceColumn.items];
+      const destItems = [...destColumn.items];
+      const [removed] = sourceItems.splice(source.index, 1);
+      destItems.splice(destination.index, 0, removed);
+      setColumns({ 
+        ...columns,
+        [source.droppableId]: {
+          ...sourceColumn,
+          items: sourceItems
+        },
+        [destination.droppableId]: {
+          ...destColumn,
+          items: destItems
+        }
+      })
+  
+    } else {
+      const column = columns[source.droppableId];
+      const copiedItems = [...column.items];
+      const [removed] = copiedItems.splice(source.index, 1);
+      copiedItems.splice(destination.index, 0, removed);
+      setColumns({
+        ...columns,
+        [source.droppableId]: {
+          ...column,
+          items: copiedItems
+        }
+      })
+    }
+};
+
+const LevelFour = () => {
 
   const [level, setLevel] = useState(1);
   const [lives, setLives] = useState(3);
@@ -17,55 +82,21 @@ const Leveltemplate = () => {
   const [subblocksh, setBlocksh] = useState([]);
   const [subblocksi, setBlocksi] = useState([]);
   const [subblocksj, setBlocksj] = useState([]);
-  const [subblocks11, setBlocks11]= useState([]);
-  const [subblocks12, setBlocks12]= useState([]);
-  const [subblocks13, setBlocks13]= useState([]);
-  const [subblocks14, setBlocks14]= useState([]);
-  const [subblocks15, setBlocks15]= useState([]);
-  const [subblocks16, setBlocks16]= useState([]);
-  const [subblocks17, setBlocks17]= useState([]);
-  const [subblocks18, setBlocks18]= useState([]);
+  const [subblocks11, setBlocks11]= useState([])
+  const [subblocks12, setBlocks12]= useState([])
+  const [subblocks13, setBlocks13]= useState([])
+  const [subblocks14, setBlocks14]= useState([])
+  const [subblocks15, setBlocks15]= useState([])
+  const [subblocks16, setBlocks16]= useState([])
+  const [subblocks17, setBlocks17]= useState([])
+  const [subblocks18, setBlocks18]= useState([])
   const [answer, setAnswer] = useState([]);
   const [algo, setAlgo] = useState('Merge');
   const [nextCounter,setNC]=useState(1);
   const [mergeCounter, setmergeCounter] = useState(0);
   const [instruct, setInst]=useState('');
-  const [brief]=useState('Enter the segment of the array you expect to occur in the next step below: ');
-  const [Messages, setErrorMessages] = useState({});
-  const [database] = useState({
-    "k0": " ",
-    "k1": " ",
-    "k2": " ",
-    "k3": " ",
-    "k4": " ",
-    "k5": " ",
-    "k6": " ",
-    "k7": " ",
-    "k8": " ",
-    "k9": " ",
-    "k10": " ",
-    "k11": " ",
-    "k12": " ",
-    "k13": " ",
-    "k14": " ",
-    "k15": " ",
-    "k16": " ",
-    "k17": " ",
-    "k18": " ",
-    "k19": " ",
-    "k20": " ",
-    "k21": " ",
-    "k22": " ",
-    "k23": " ",
-    "k24": " ",
-    "k25": " ",
-    "k26": " ",
-    "k27": " "
-    });
-    const [errors] = useState({
-      wrong: "wrong answer :(",
-      right: "correct!"
-    });
+  const [brief]=useState('Arrange the blocks in "Current Set" for what the NEXT iteration of the mergesort algorithm should look like: ');
+  const [columns, setColumns] = useState(columnsFromBackend);
     
   const generateRandomArray = (len) => {
 
@@ -82,7 +113,10 @@ const Leveltemplate = () => {
     setBlocks(randomArray)
 	}
 
-  useEffect(() => {generateRandomArray(len)}, [len, level, lives, algo])
+  useEffect(() => {
+      generateRandomArray(len)
+      
+  }, [len, level, lives, algo])
 
   const next = ()=>{//wip
       
@@ -113,21 +147,17 @@ const Leveltemplate = () => {
     let inst = '';
 
     if(nextCounter==1){
-        inst='first the first half of the array is copied into a sub array'
-        //setInst(inst); 
+        inst=''
+        setInst(inst);  
         storeArray(a1,a2,0,4);
         setBlocksa(a2);  
-        database.k1 = (a2.toString()); 
-        setInst(database.k1); 
     }
     else 
     if(nextCounter==2){  
-        inst='this array is then split in half until the resulting array is length 1'
-        //setInst(inst); 
+        inst=''
+        setInst(inst); 
         storeArray(a1,a3,0,2);
-        setBlocksb(a3);  
-        database.k1 = (a3.toString()); 
-        setInst(database.k1);   
+        setBlocksb(a3);    
     }
     if(nextCounter==3){
         
@@ -135,7 +165,7 @@ const Leveltemplate = () => {
         setBlocksc(a4);   
     }
     if(nextCounter==4){
-        inst='this array is then split in half until the resulting array is length 1'
+        inst=''
         setInst(inst); 
         let a5=[];
         storeArray(a1,a5,0,0);
@@ -143,7 +173,7 @@ const Leveltemplate = () => {
         
     }
     if(nextCounter==5){
-        inst='the other half of the array is then put into a sub array'
+        inst=''
         setInst(inst); 
        let a6=[];
         storeArray(a1,a6,1,1);
@@ -151,7 +181,7 @@ const Leveltemplate = () => {
         
     }
     if(nextCounter==6){
-        inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
+        inst=''
         setInst(inst);
         //first merge
         merge(a1,0,0,1);
@@ -162,7 +192,7 @@ const Leveltemplate = () => {
         
     }
     if(nextCounter==7){
-        inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array, the length of this array is one so its finnished'
+        inst=''
         setInst(inst);
     let a7=[];
     storeArray(a1,a7,2,2);
@@ -171,7 +201,7 @@ const Leveltemplate = () => {
     }
     if(nextCounter==8){
         //second merge
-        inst='these 2 sub arrays are then sorted and merged into the previous array'
+        inst=''
         setInst(inst);
         merge(a1,0,1,2);
         storeArray(a1,a3,0,2);    
@@ -179,7 +209,7 @@ const Leveltemplate = () => {
             
     }
     if(nextCounter==9){
-        inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array'
+        inst=''
         setInst(inst);
 
         storeArray(a1,a8,3,4);
@@ -187,7 +217,7 @@ const Leveltemplate = () => {
             
     }
     if(nextCounter==10){
-        inst='this array is then split in half until the resulting array is length 1'
+        inst=''
         setInst(inst); 
         let a9=[];
         storeArray(a1,a9,3,3);
@@ -195,7 +225,7 @@ const Leveltemplate = () => {
             
     }
     if(nextCounter==11){
-        inst='the other half of the  array is then put into a sub array'
+        inst=''
         setInst(inst);
         let a10=[];
         storeArray(a1,a10,4,4);
@@ -203,7 +233,7 @@ const Leveltemplate = () => {
             
     }
     if(nextCounter==12){
-        inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
+        inst=''
         setInst(inst);
         merge(a1,3,3,4);
         storeArray(a1,a8,3,4);  
@@ -213,7 +243,7 @@ const Leveltemplate = () => {
             
     }
     if(nextCounter==13){
-        inst='these 2 sorted arrays are merged into their parent array and sorted'
+        inst=''
         setInst(inst);
         merge(a1,0,2,4);
         storeArray(a1,a2,0,4);
@@ -223,7 +253,7 @@ const Leveltemplate = () => {
             
     }
     if(nextCounter==14){
-        inst='The original array is now the olldest unsorted array so its unsorted half is taken and put into a sub array'
+        inst=''
         setInst(inst);
 
         storeArray(a1,a11,5,9);
@@ -231,7 +261,7 @@ const Leveltemplate = () => {
 
     }
     if(nextCounter==15){
-        inst='this array is then split in half until the resulting array is length 1'
+        inst=''
         setInst(inst);
     storeArray(a1,a12,5,7);
     setBlocks11(a12);
@@ -249,14 +279,14 @@ const Leveltemplate = () => {
         setBlocks13(a14);
     }
     if(nextCounter==18){  
-        inst='the other half of the array is then put into a sub array'
+        inst=''
         setInst(inst);
         let a15=[];
         storeArray(a1,a15,6,6);
         setBlocks14(a15);
     }
     if(nextCounter==19){
-        inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
+        inst=''
         setInst(inst);
         merge(a1,5,5,6);
         storeArray(a1,a13,5,6);
@@ -266,7 +296,7 @@ const Leveltemplate = () => {
 
     }
     if(nextCounter==20){
-        inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array, the length of this array is one so its finnished'
+        
         setInst(inst);
         let a16=[];
         storeArray(a1,a16,7,7);
@@ -275,7 +305,7 @@ const Leveltemplate = () => {
     }
 
     if(nextCounter==21){
-        inst='these 2 sub arrays are then sorted and merged into the previous array'
+        
         setInst(inst);
         merge(a1,5,6,7);
         storeArray(a1,a12,5,7);
@@ -286,7 +316,7 @@ const Leveltemplate = () => {
 
     }
     if(nextCounter==22){
-        inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array'
+        
         setInst(inst);
 
         storeArray(a1,a17,8,9);
@@ -294,7 +324,7 @@ const Leveltemplate = () => {
 
     }
     if(nextCounter==23){
-        inst='this array is then split in half until the resulting array is length 1'
+        
         setInst(inst);
         let a18=[];
         storeArray(a1,a18,8,8);
@@ -302,7 +332,7 @@ const Leveltemplate = () => {
 
     }
     if(nextCounter==24){
-        inst='the other half of the array is then put into a sub array'
+        
         setInst(inst);
         let a19=[];
         storeArray(a1,a19,9,9);
@@ -310,7 +340,7 @@ const Leveltemplate = () => {
 
     }
     if(nextCounter==25){
-        inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
+        
         setInst(inst);
         merge(a1,8,8,9);
         storeArray(a1,a17,8,9);
@@ -321,7 +351,7 @@ const Leveltemplate = () => {
 
     }
     if(nextCounter==26){
-        inst='these 2 sorted arrays are merged into their parent array and sorted'
+        
         setInst(inst);
         merge(a1,5,7,9);
         storeArray(a1,a11,5,9);
@@ -332,7 +362,7 @@ const Leveltemplate = () => {
 
     }
     if(nextCounter==27){
-        inst='finaly the parent array is the only unsorted array, the 2 sub arrays are merged and sored resulting in the final array'
+       
         setInst(inst);
 
         merge(a1,0,4,9);
@@ -340,7 +370,7 @@ const Leveltemplate = () => {
 
     }
     if(nextCounter==28){
-        inst='This level is now finished, click next level to proced to the next or reload the page to replay this level'
+        inst='This level is now finished. Click NEXT LEVEL to proceed to the next or reload the page to replay this level. '
         setInst(inst);
 
     }
@@ -407,64 +437,75 @@ const Leveltemplate = () => {
 
     }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    var { answer } = document.forms[0];
-
-    if (database.k1 !== answer.value) {
-      setErrorMessages({ name: "wrong", message: errors.wrong });
-    } 
-    else {
-      setErrorMessages({ name: "right", message: errors.right });
-      next();
-    };
-  };
-
-  const renderwrongMessage = (name) =>
-    name === Messages.name && (
-      <div className="wrong">{Messages.message}</div>
-    );
-  const renderrightMessage = (name) =>
-    name === Messages.name && (
-      <div className="right">{Messages.message}</div>
-    );
-
-  const renderForm = (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <input type="text" name="answer" required />
-          {renderwrongMessage("wrong")}
-          {renderrightMessage("right")}
-        </div>
-        <div className="button-container">
-          <input type="submit" />
-        </div>
-      </form>
-    </div>
-  );
-
-  const renderrender =(
-    <div className="login">
-      <div className="login-form">
-          {renderForm}
-        </div>
-    </div>
-  );
-
-//--------------------------------------------------------------------------------------------------------
-
     return (
     <div>
-
-      <div id='centered'>
-        <h2>{brief}</h2>
+      <div className = 'question' id = 'centered'>{brief}</div>
+      <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
+        <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
+          {Object.entries(columns).map(([id, column]) => {
+            return (
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <h2>{column.name}</h2>
+                <div style={{ margin: 8 }}>
+                  <Droppable droppableId={id} key={id}>
+                    {(provided, snapshot) => {
+                      return (
+                        <div
+                          {...provided.droppableProps}
+                          ref={provided.innerRef}
+                          style={{
+                            background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
+                            padding: 4,
+                            width: 450,
+                            minHeight: 65,
+                            display: 'flex', 
+                            flexDirection: 'row'
+                          }}
+                        >
+                          {column.items.map((item, index) => {
+                            return (
+                              <Draggable key={item.id} draggableId={item.id} index={index}>
+                                {(provided, snapshot) => {
+                                  return (
+                                    <div
+                                      ref={provided.innerRef}
+                                      {...provided.draggableProps}
+                                      {...provided.dragHandleProps}
+                                      style={{
+                                        userSelect: 'none',
+                                        padding: 16,
+                                        margin: '0 4px 4px 0',
+                                        minHeight: '30px',
+                                        backgroundColor: snapshot.isDragging ? '#263B4A' : '#456C86',
+                                        color: 'white',
+                                        ...provided.draggableProps.style
+                                      }}
+                                    >
+                                      {item.content}
+                                    </div>
+                                  )
+                                }}
+                              </Draggable>
+                            );
+                          })}
+                          {provided.placeholder}
+  
+                        </div>
+                      )
+                    }}
+                  </Droppable>
+                </div>
+              </div>
+            )
+          })}
+        </DragDropContext>
       </div>
 
       <div id = 'centered'>
             <p>
-            {renderrender}
+              <button onClick={next}>
+                  SUBMIT 
+              </button>
             </p>
       </div>
 
@@ -598,6 +639,6 @@ const Leveltemplate = () => {
       </div>
     </div>
     )
-  }
+}
 
-export default Leveltemplate
+export default LevelFour
