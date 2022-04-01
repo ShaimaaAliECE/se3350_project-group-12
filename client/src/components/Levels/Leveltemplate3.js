@@ -407,6 +407,120 @@ const Leveltemplate = () => {
 
     }
 
+// //--------------------------------------------------------------------------------------------------------
+//   function test () {
+
+//   a1 = blocks;
+//   let a2=[];
+//   let a3=[];
+//   let a4=[];
+//   let a8=[]; 
+//   let a11=[];
+//   let a12=[];
+//   let a13=[];
+//   let a17=[];
+
+//   storeArray(a1,a2,0,4);
+//     setBlocksa(a2);  
+
+//   storeArray(a1,a3,0,2);
+//     setBlocksb(a3);    
+
+//   storeArray(a1,a4,0,1);
+//     setBlocksc(a4);   
+
+//   let a5=[];
+//   storeArray(a1,a5,0,0);
+//     setBlocksd(a5);
+      
+
+//   let a6=[];
+//   storeArray(a1,a6,1,1);
+//     setBlockse(a6);
+
+//   merge(a1,0,0,1);
+//   storeArray(a1,a4,0,1); 
+//     setBlocksc(a4);
+      
+//   let a7=[];
+//   storeArray(a1,a7,2,2);
+//     setBlocksf(a7);
+  
+//   merge(a1,0,1,2);
+//   storeArray(a1,a3,0,2);    
+//     setBlocksb(a3);
+          
+//   storeArray(a1,a8,3,4);
+//     setBlocksg(a8);
+          
+//   let a9=[];
+//   storeArray(a1,a9,3,3);
+//     setBlocksh(a9);
+          
+//   let a10=[];
+//   storeArray(a1,a10,4,4);
+//       setBlocksi(a10);
+          
+//   merge(a1,3,3,4);
+//   storeArray(a1,a8,3,4);  
+//     setBlocksg(a8);
+          
+//   merge(a1,0,2,4);
+//   storeArray(a1,a2,0,4);
+//     setBlocksa(a2);
+
+//   storeArray(a1,a11,5,9);
+//     setBlocksj(a11);
+
+//   storeArray(a1,a12,5,7);
+//     setBlocks11(a12);
+
+//   storeArray(a1,a13,5,6);
+//     setBlocks12(a13); 
+
+//   let a14=[];
+//   storeArray(a1,a14,5,5);
+//     setBlocks13(a14);
+
+//   let a15=[];
+//   storeArray(a1,a15,6,6);
+//     setBlocks14(a15);
+
+//   merge(a1,5,5,6);
+//   storeArray(a1,a13,5,6);
+//     setBlocks12(a13); 
+
+//   let a16=[];
+//   storeArray(a1,a16,7,7);
+//     setBlocks15(a16); 
+    
+//   merge(a1,5,6,7);
+//   storeArray(a1,a12,5,7);
+//     setBlocks11(a12);
+
+//   storeArray(a1,a17,8,9);
+//     setBlocks16(a17); 
+
+//   let a18=[];
+//   storeArray(a1,a18,8,8);
+//     setBlocks17(a18); 
+
+//   let a19=[];
+//   storeArray(a1,a19,9,9);
+//     setBlocks18(a19); 
+
+//   merge(a1,8,8,9);
+//   storeArray(a1,a17,8,9);
+//       setBlocks16(a17); 
+
+//   merge(a1,5,7,9);
+//   storeArray(a1,a11,5,9);
+//       setBlocksj(a11);
+
+//   merge(a1,0,4,9);
+//     setBlocks(a1);
+//   }
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
