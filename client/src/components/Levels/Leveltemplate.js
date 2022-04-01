@@ -25,42 +25,16 @@ const Leveltemplate = () => {
   const [subblocks16, setBlocks16]= useState([]);
   const [subblocks17, setBlocks17]= useState([]);
   const [subblocks18, setBlocks18]= useState([]);
-  const [answer, setAnswer] = useState([]);
   const [algo, setAlgo] = useState('Merge');
-  const [nextCounter,setNC]=useState(1);
+  const [nextCounter,setNC]=useState(0);
   const [mergeCounter, setmergeCounter] = useState(0);
   const [instruct, setInst]=useState('');
+  const [answer, setAns]=useState('');
+  const [done, setDone]=useState('');
   const [brief]=useState('Enter the segment of the array you expect to occur in the next step below: ');
   const [Messages, setErrorMessages] = useState({});
   const [database] = useState({
-    "k0": " ",
-    "k1": " ",
-    "k2": " ",
-    "k3": " ",
-    "k4": " ",
-    "k5": " ",
-    "k6": " ",
-    "k7": " ",
-    "k8": " ",
-    "k9": " ",
-    "k10": " ",
-    "k11": " ",
-    "k12": " ",
-    "k13": " ",
-    "k14": " ",
-    "k15": " ",
-    "k16": " ",
-    "k17": " ",
-    "k18": " ",
-    "k19": " ",
-    "k20": " ",
-    "k21": " ",
-    "k22": " ",
-    "k23": " ",
-    "k24": " ",
-    "k25": " ",
-    "k26": " ",
-    "k27": " "
+    "k1": "start"
     });
     const [errors] = useState({
       wrong: "wrong answer :(",
@@ -112,244 +86,320 @@ const Leveltemplate = () => {
 
     let inst = '';
 
-    if(nextCounter==1){
-        inst='first the first half of the array is copied into a sub array'
-        //setInst(inst); 
-        storeArray(a1,a2,0,4);
-        setBlocksa(a2);  
-        database.k1 = (a2.toString()); 
-        setInst(database.k1); 
-    }
-    else 
-    if(nextCounter==2){  
-        inst='this array is then split in half until the resulting array is length 1'
-        //setInst(inst); 
-        storeArray(a1,a3,0,2);
-        setBlocksb(a3);  
-        database.k1 = (a3.toString()); 
-        setInst(database.k1);   
-    }
-    if(nextCounter==3){
-        
-        storeArray(a1,a4,0,1);
-        setBlocksc(a4);   
-    }
-    if(nextCounter==4){
-        inst='this array is then split in half until the resulting array is length 1'
-        setInst(inst); 
-        let a5=[];
-        storeArray(a1,a5,0,0);
-        setBlocksd(a5);
-        
-    }
-    if(nextCounter==5){
-        inst='the other half of the array is then put into a sub array'
-        setInst(inst); 
-       let a6=[];
-        storeArray(a1,a6,1,1);
-        setBlockse(a6);
-        
-    }
-    if(nextCounter==6){
-        inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
-        setInst(inst);
-        //first merge
-        merge(a1,0,0,1);
-        storeArray(a1,a4,0,1);
-        
-        //merge(a4,0,0,1);
-        setBlocksc(a4);
-        
-    }
-    if(nextCounter==7){
-        inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array, the length of this array is one so its finnished'
-        setInst(inst);
+  inst='start'
+  //setInst(inst); 
+  storeArray(a1,a2,0,4);
+  database.k1 = (a2.toString());
+  setAns(database.k1);
+
+  if(nextCounter==1){
+    inst='first the first half of the array is copied into a sub array'
+    setInst(inst); 
+    storeArray(a1,a2,0,4);
+    setBlocksa(a2);  
+
+    storeArray(a1,a3,0,2);
+    database.k1 = (a3.toString());
+    setAns(database.k1);
+  } 
+  else
+  if(nextCounter==2){  
+    inst='this array is then split in half until the resulting array is length 1'
+    setInst(inst); 
+    storeArray(a1,a3,0,2);
+    setBlocksb(a3);  
+
+    storeArray(a1,a4,0,1);
+    database.k1 = (a4.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==3){
+    storeArray(a1,a4,0,1);
+    setBlocksc(a4);  
+
+    let a5=[];
+    storeArray(a1,a5,0,0);
+    database.k1 = (a5.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==4){
+    inst='this array is then split in half until the resulting array is length 1'
+    setInst(inst); 
+    let a5=[];
+    storeArray(a1,a5,0,0);
+    setBlocksd(a5);
+
+    let a6=[];
+    storeArray(a1,a6,1,1);
+    database.k1 = (a6.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==5){
+    inst='the other half of the array is then put into a sub array'
+    setInst(inst); 
+    let a6=[];
+    storeArray(a1,a6,1,1);
+    setBlockse(a6);
+
+    merge(a1,0,0,1);
+    storeArray(a1,a4,0,1);
+    database.k1 = (a4.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==6){
+    inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
+    setInst(inst);
+    //first merge
+    merge(a1,0,0,1);
+    storeArray(a1,a4,0,1);
+    setBlocksc(a4);
+
+    let a7=[];
+    storeArray(a1,a7,2,2);
+    database.k1 = (a7.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==7){
+    inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array, the length of this array is one so its finished'
+    setInst(inst);
     let a7=[];
     storeArray(a1,a7,2,2);
     setBlocksf(a7);
-        
-    }
-    if(nextCounter==8){
-        //second merge
-        inst='these 2 sub arrays are then sorted and merged into the previous array'
-        setInst(inst);
-        merge(a1,0,1,2);
-        storeArray(a1,a3,0,2);    
-        setBlocksb(a3);
-            
-    }
-    if(nextCounter==9){
-        inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array'
-        setInst(inst);
 
-        storeArray(a1,a8,3,4);
-        setBlocksg(a8);
-            
-    }
-    if(nextCounter==10){
-        inst='this array is then split in half until the resulting array is length 1'
-        setInst(inst); 
-        let a9=[];
-        storeArray(a1,a9,3,3);
-        setBlocksh(a9);
-            
-    }
-    if(nextCounter==11){
-        inst='the other half of the  array is then put into a sub array'
-        setInst(inst);
-        let a10=[];
-        storeArray(a1,a10,4,4);
-        setBlocksi(a10);
-            
-    }
-    if(nextCounter==12){
-        inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
-        setInst(inst);
-        merge(a1,3,3,4);
-        storeArray(a1,a8,3,4);  
-        //merge(a8,3,3,4);
-        
-        setBlocksg(a8);
-            
-    }
-    if(nextCounter==13){
-        inst='these 2 sorted arrays are merged into their parent array and sorted'
-        setInst(inst);
-        merge(a1,0,2,4);
-        storeArray(a1,a2,0,4);
-        //merge(a2,0,2,4);
-        
-        setBlocksa(a2);
-            
-    }
-    if(nextCounter==14){
-        inst='The original array is now the olldest unsorted array so its unsorted half is taken and put into a sub array'
-        setInst(inst);
+    merge(a1,0,1,2);
+    storeArray(a1,a3,0,2);
+    database.k1 = (a3.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==8){
+    //second merge
+    inst='these 2 sub arrays are then sorted and merged into the previous array'
+    setInst(inst);
+    merge(a1,0,1,2);
+    storeArray(a1,a3,0,2);    
+    setBlocksb(a3);  
 
-        storeArray(a1,a11,5,9);
-        setBlocksj(a11);
+    storeArray(a1,a8,3,4);
+    database.k1 = (a8.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==9){
+    inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array'
+    setInst(inst);
+    storeArray(a1,a8,3,4);
+    setBlocksg(a8); 
 
-    }
-    if(nextCounter==15){
-        inst='this array is then split in half until the resulting array is length 1'
-        setInst(inst);
+    let a9=[];
+    storeArray(a1,a9,3,3);
+    database.k1 = (a9.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==10){
+    inst='this array is then split in half until the resulting array is length 1'
+    setInst(inst); 
+    let a9=[];
+    storeArray(a1,a9,3,3);
+    setBlocksh(a9);
+
+    let a10=[];
+    storeArray(a1,a10,4,4); 
+    database.k1 = (a10.toString());  
+    setAns(database.k1);
+  }
+  if(nextCounter==11){
+    inst='the other half of the  array is then put into a sub array'
+    setInst(inst);
+    let a10=[];
+    storeArray(a1,a10,4,4);
+    setBlocksi(a10);
+
+    merge(a1,3,3,4);
+    storeArray(a1,a8,3,4); 
+    database.k1 = (a8.toString()); 
+    setAns(database.k1);
+  }
+  if(nextCounter==12){
+    inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
+    setInst(inst);
+    merge(a1,3,3,4);
+    storeArray(a1,a8,3,4);  
+    setBlocksg(a8); 
+
+    merge(a1,0,2,4);
+    storeArray(a1,a2,0,4);
+    database.k1 = (a2.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==13){
+    inst='these 2 sorted arrays are merged into their parent array and sorted'
+    setInst(inst);
+    merge(a1,0,2,4);
+    storeArray(a1,a2,0,4);
+    setBlocksa(a2);
+
+    storeArray(a1,a11,5,9);
+    database.k1 = (a11.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==14){
+    inst='The original array is now the olldest unsorted array so its unsorted half is taken and put into a sub array'
+    setInst(inst);
+    storeArray(a1,a11,5,9);
+    setBlocksj(a11);
+
+    storeArray(a1,a12,5,7);
+    database.k1 = (a12.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==15){
+    inst='this array is then split in half until the resulting array is length 1'
+    setInst(inst);
     storeArray(a1,a12,5,7);
     setBlocks11(a12);
 
-    }
-    if(nextCounter==16){
-        
-        storeArray(a1,a13,5,6);
-        setBlocks12(a13); 
+    storeArray(a1,a13,5,6);
+    database.k1 = (a13.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==16){
+    storeArray(a1,a13,5,6);
+    setBlocks12(a13); 
 
-    }
-    if(nextCounter==17){
-        let a14=[];
-        storeArray(a1,a14,5,5);
-        setBlocks13(a14);
-    }
-    if(nextCounter==18){  
-        inst='the other half of the array is then put into a sub array'
-        setInst(inst);
-        let a15=[];
-        storeArray(a1,a15,6,6);
-        setBlocks14(a15);
-    }
-    if(nextCounter==19){
-        inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
-        setInst(inst);
-        merge(a1,5,5,6);
-        storeArray(a1,a13,5,6);
-        //merge(a13,5,5,6);
-        
-        setBlocks12(a13); 
+    let a14=[];
+    storeArray(a1,a14,5,5);
+    database.k1 = (a14.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==17){
+    let a14=[];
+    storeArray(a1,a14,5,5);
+    setBlocks13(a14);
 
-    }
-    if(nextCounter==20){
-        inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array, the length of this array is one so its finnished'
-        setInst(inst);
-        let a16=[];
-        storeArray(a1,a16,7,7);
-        setBlocks15(a16); 
-      
-    }
+    let a15=[];
+    storeArray(a1,a15,6,6);
+    database.k1 = (a15.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==18){  
+    inst='the other half of the array is then put into a sub array'
+    setInst(inst);
+    let a15=[];
+    storeArray(a1,a15,6,6);
+    setBlocks14(a15);
 
-    if(nextCounter==21){
-        inst='these 2 sub arrays are then sorted and merged into the previous array'
-        setInst(inst);
-        merge(a1,5,6,7);
-        storeArray(a1,a12,5,7);
-        
-        //merge(a12,5,6,7);
-        
-        setBlocks11(a12);
+    merge(a1,5,5,6);
+    storeArray(a1,a13,5,6);
+    database.k1 = (a13.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==19){
+    inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
+    setInst(inst);
+    merge(a1,5,5,6);
+    storeArray(a1,a13,5,6);
+    setBlocks12(a13);
 
-    }
-    if(nextCounter==22){
-        inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array'
-        setInst(inst);
+    let a16=[];
+    storeArray(a1,a16,7,7);
+    database.k1 = (a16.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==20){
+    inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array, the length of this array is one so its finnished'
+    setInst(inst);
+    let a16=[];
+    storeArray(a1,a16,7,7);
+    setBlocks15(a16); 
 
-        storeArray(a1,a17,8,9);
-        setBlocks16(a17); 
+    merge(a1,5,6,7);
+    storeArray(a1,a12,5,7);
+    database.k1 = (a12.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==21){
+    inst='these 2 sub arrays are then sorted and merged into the previous array'
+    setInst(inst);
+    merge(a1,5,6,7);
+    storeArray(a1,a12,5,7);
+    setBlocks11(a12);
 
-    }
-    if(nextCounter==23){
-        inst='this array is then split in half until the resulting array is length 1'
-        setInst(inst);
-        let a18=[];
-        storeArray(a1,a18,8,8);
-        setBlocks17(a18); 
+    storeArray(a1,a17,8,9);
+    database.k1 = (a17.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==22){
+    inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array'
+    setInst(inst);
+    storeArray(a1,a17,8,9);
+    setBlocks16(a17); 
 
-    }
-    if(nextCounter==24){
-        inst='the other half of the array is then put into a sub array'
-        setInst(inst);
-        let a19=[];
-        storeArray(a1,a19,9,9);
-        setBlocks18(a19); 
+    let a18=[];
+    storeArray(a1,a18,8,8);
+    database.k1 = (a18.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==23){
+    inst='this array is then split in half until the resulting array is length 1'
+    setInst(inst);
+    let a18=[];
+    storeArray(a1,a18,8,8);
+    setBlocks17(a18); 
 
-    }
-    if(nextCounter==25){
-        inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
-        setInst(inst);
-        merge(a1,8,8,9);
-        storeArray(a1,a17,8,9);
-       
-        //merge(a17,8,8,9);
-        
-        setBlocks16(a17); 
+    let a19=[];
+    storeArray(a1,a19,9,9);
+    database.k1 = (a19.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==24){
+    inst='the other half of the array is then put into a sub array'
+    setInst(inst);
+    let a19=[];
+    storeArray(a1,a19,9,9);
+    setBlocks18(a19); 
 
-    }
-    if(nextCounter==26){
-        inst='these 2 sorted arrays are merged into their parent array and sorted'
-        setInst(inst);
-        merge(a1,5,7,9);
-        storeArray(a1,a11,5,9);
-        
-        //merge(a11,5,7,9);
-        
-        setBlocksj(a11);
+    merge(a1,8,8,9);
+    storeArray(a1,a17,8,9);
+    database.k1 = (a17.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==25){
+    inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
+    setInst(inst);
+    merge(a1,8,8,9);
+    storeArray(a1,a17,8,9);
+    setBlocks16(a17); 
 
-    }
-    if(nextCounter==27){
-        inst='finaly the parent array is the only unsorted array, the 2 sub arrays are merged and sored resulting in the final array'
-        setInst(inst);
+    merge(a1,5,7,9);
+    storeArray(a1,a11,5,9);
+    database.k1 = (a11.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==26){
+    inst='these 2 sorted arrays are merged into their parent array and sorted'
+    setInst(inst);
+    merge(a1,5,7,9);
+    storeArray(a1,a11,5,9);
+    setBlocksj(a11);
 
-        merge(a1,0,4,9);
-        setBlocks(a1);
+    merge(a1,0,4,9);
+    database.k1 = (a1.toString());
+    setAns(database.k1);
+  }
+  if(nextCounter==27){
+    inst='finally the parent array is the only unsorted array, the 2 sub arrays are merged and sored resulting in the final array'
+    setInst(inst);
+    merge(a1,0,4,9);
+    setBlocks(a1);
 
-    }
-    if(nextCounter==28){
-        inst='This level is now finished, click next level to proced to the next or reload the page to replay this level'
-        setInst(inst);
-
-    }
-    }
+    done='This level is now finished, click next level to proced to the next or reload the page to replay this level'
+    setDone(done);
+  }
+  }
 
     //function to store thr randomly generated values into sub arrays to be viwed by the user when needed
     const storeArray= (source, destination, low,high)=>{
         for(let i = 0; i<((high-low)+1);i++)
-        {destination[i]= source[low+i]}  
+        {destination[i]= source[low+i]}
     }
 
 //an actual merge sort algrithim, im stuck trying to get it to translate properly to a graphic so this will not be included in this release
@@ -403,8 +453,6 @@ const Leveltemplate = () => {
             j++;
             k++;
         }
-        
-
     }
 
   const handleSubmit = (event) => {
@@ -471,6 +519,11 @@ const Leveltemplate = () => {
       <div>
 
           <div className = 'question' id = 'centered'>
+          {answer}
+          {done}
+          </div>
+
+          <div className = 'question' id = 'centered'>
           {instruct}
           </div>
           
@@ -479,12 +532,8 @@ const Leveltemplate = () => {
               </ul>
           </div>
 
-
-          
-
           <table  id = 'centered' >
               
-
                   <td>
                   <div id = 'centered'><ul id = 'horizontal-list'>{subblocksa.map(block => (<li key = {block}>{block}</li>))}
                   </ul></div>
