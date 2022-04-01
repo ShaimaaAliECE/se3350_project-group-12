@@ -32,6 +32,39 @@ const Leveltemplate = () => {
   const [instruct, setInst]=useState('');
   const [brief]=useState('Enter the segment of the array you expect to occur in the next step below: ');
   const [Messages, setErrorMessages] = useState({});
+  const [database] = useState({
+    "k1": " ",
+    "k2": " ",
+    "k3": " ",
+    "k4": " ",
+    "k5": " ",
+    "k6": " ",
+    "k7": " ",
+    "k8": " ",
+    "k9": " ",
+    "k10": " ",
+    "k11": " ",
+    "k12": " ",
+    "k13": " ",
+    "k14": " ",
+    "k15": " ",
+    "k16": " ",
+    "k17": " ",
+    "k18": " ",
+    "k19": " ",
+    "k20": " ",
+    "k21": " ",
+    "k22": " ",
+    "k23": " ",
+    "k24": " ",
+    "k25": " ",
+    "k26": " ",
+    "k27": " "
+    });
+    const [errors] = useState({
+      wrong: "wrong answer :(",
+      right: "correct!"
+    });
     
   const generateRandomArray = (len) => {
 
@@ -368,27 +401,125 @@ const Leveltemplate = () => {
         
 
     }
+//--------------------------------------------------------------------------------------------------------
+  function test () {
 
-  const database = {
-      "one": "one",
-      "two": "two",
-      "three": "three",
-      "four": "four",
-      "five": "five"
-    };
+    let a2=[];
+    let a3=[];
+    let a4=[];
+    let a8=[]; 
+    let a11=[];
+    let a12=[];
+    let a13=[];
+    let a17=[];
 
-  const errors = {
-    wrong: "wrong answer",
-    right: "correct!"
-  };
+  storeArray(a1,a2,0,4);
+    setBlocksa(a2);  
+
+  storeArray(a1,a3,0,2);
+    setBlocksb(a3);    
+
+  storeArray(a1,a4,0,1);
+    setBlocksc(a4);   
+
+  let a5=[];
+  storeArray(a1,a5,0,0);
+    setBlocksd(a5);
+      
+
+  let a6=[];
+  storeArray(a1,a6,1,1);
+    setBlockse(a6);
+
+  merge(a1,0,0,1);
+  storeArray(a1,a4,0,1); 
+    setBlocksc(a4);
+      
+  let a7=[];
+  storeArray(a1,a7,2,2);
+    setBlocksf(a7);
+  
+  merge(a1,0,1,2);
+  storeArray(a1,a3,0,2);    
+    setBlocksb(a3);
+          
+  storeArray(a1,a8,3,4);
+    setBlocksg(a8);
+          
+  let a9=[];
+  storeArray(a1,a9,3,3);
+    setBlocksh(a9);
+          
+  let a10=[];
+  storeArray(a1,a10,4,4);
+      setBlocksi(a10);
+          
+  merge(a1,3,3,4);
+  storeArray(a1,a8,3,4);  
+    setBlocksg(a8);
+          
+  merge(a1,0,2,4);
+  storeArray(a1,a2,0,4);
+    setBlocksa(a2);
+
+  storeArray(a1,a11,5,9);
+    setBlocksj(a11);
+
+  storeArray(a1,a12,5,7);
+    setBlocks11(a12);
+
+  storeArray(a1,a13,5,6);
+    setBlocks12(a13); 
+
+  let a14=[];
+  storeArray(a1,a14,5,5);
+    setBlocks13(a14);
+
+  let a15=[];
+  storeArray(a1,a15,6,6);
+    setBlocks14(a15);
+
+  merge(a1,5,5,6);
+  storeArray(a1,a13,5,6);
+    setBlocks12(a13); 
+
+  let a16=[];
+  storeArray(a1,a16,7,7);
+    setBlocks15(a16); 
+    
+  merge(a1,5,6,7);
+  storeArray(a1,a12,5,7);
+    setBlocks11(a12);
+
+  storeArray(a1,a17,8,9);
+    setBlocks16(a17); 
+
+  let a18=[];
+  storeArray(a1,a18,8,8);
+    setBlocks17(a18); 
+
+  let a19=[];
+  storeArray(a1,a19,9,9);
+    setBlocks18(a19); 
+
+  merge(a1,8,8,9);
+  storeArray(a1,a17,8,9);
+      setBlocks16(a17); 
+
+  merge(a1,5,7,9);
+  storeArray(a1,a11,5,9);
+      setBlocksj(a11);
+
+  merge(a1,0,4,9);
+    setBlocks(a1);
+  }
 
   const handleSubmit = (event) => {
-    //Prevent page reload
     event.preventDefault();
 
     var { answer } = document.forms[0];
 
-    if (database.one !== answer.value) {
+    if (database.k1 !== answer.value) {
       setErrorMessages({ name: "wrong", message: errors.wrong });
     } 
     else {
@@ -401,13 +532,11 @@ const Leveltemplate = () => {
     name === Messages.name && (
       <div className="wrong">{Messages.message}</div>
     );
-
   const renderrightMessage = (name) =>
     name === Messages.name && (
       <div className="right">{Messages.message}</div>
     );
 
-  // JSX code for login form
   const renderForm = (
     <div className="form">
       <form onSubmit={handleSubmit}>
@@ -423,6 +552,16 @@ const Leveltemplate = () => {
     </div>
   );
 
+  const renderrender =(
+    <div className="login">
+      <div className="login-form">
+          {renderForm}
+        </div>
+    </div>
+  );
+
+//--------------------------------------------------------------------------------------------------------
+
     return (
     <div>
 
@@ -432,12 +571,7 @@ const Leveltemplate = () => {
 
       <div id = 'centered'>
             <p>
-            <div className="login">
-              <div className="login-form">
-                <div className="title">Sign In</div>
-                {renderForm}
-              </div>
-            </div>
+            {renderrender}
             </p>
       </div>
 
