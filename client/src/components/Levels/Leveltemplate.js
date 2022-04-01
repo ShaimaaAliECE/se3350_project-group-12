@@ -33,6 +33,7 @@ const Leveltemplate = () => {
   const [brief]=useState('Enter the segment of the array you expect to occur in the next step below: ');
   const [Messages, setErrorMessages] = useState({});
   const [database] = useState({
+    "k0": " ",
     "k1": " ",
     "k2": " ",
     "k3": " ",
@@ -62,7 +63,7 @@ const Leveltemplate = () => {
     "k27": " "
     });
     const [errors] = useState({
-      wrong: "wrong answer :(",
+      wrong: (database.k1).toString(),
       right: "correct!"
     });
     
@@ -113,17 +114,20 @@ const Leveltemplate = () => {
 
     if(nextCounter==1){
         inst='first the first half of the array is copied into a sub array'
-        setInst(inst);  
+        //setInst(inst); 
         storeArray(a1,a2,0,4);
         setBlocksa(a2);  
-        database.k1 = a2.toString();
+        database.k1 = (a2.toString()); 
+        setInst(database.k1); 
     }
     else 
     if(nextCounter==2){  
         inst='this array is then split in half until the resulting array is length 1'
-        setInst(inst); 
+        //setInst(inst); 
         storeArray(a1,a3,0,2);
-        setBlocksb(a3);    
+        setBlocksb(a3);  
+        database.k1 = (a3.toString()); 
+        setInst(database.k1);   
     }
     if(nextCounter==3){
         
