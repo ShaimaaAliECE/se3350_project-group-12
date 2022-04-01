@@ -116,6 +116,7 @@ const Leveltemplate = () => {
         setInst(inst);  
         storeArray(a1,a2,0,4);
         setBlocksa(a2);  
+        database.k1 = a2.toString();
     }
     else 
     if(nextCounter==2){  
@@ -404,14 +405,15 @@ const Leveltemplate = () => {
 //--------------------------------------------------------------------------------------------------------
   function test () {
 
-    let a2=[];
-    let a3=[];
-    let a4=[];
-    let a8=[]; 
-    let a11=[];
-    let a12=[];
-    let a13=[];
-    let a17=[];
+  a1 = blocks;
+  let a2=[];
+  let a3=[];
+  let a4=[];
+  let a8=[]; 
+  let a11=[];
+  let a12=[];
+  let a13=[];
+  let a17=[];
 
   storeArray(a1,a2,0,4);
     setBlocksa(a2);  
