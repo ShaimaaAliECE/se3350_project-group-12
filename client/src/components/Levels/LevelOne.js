@@ -449,39 +449,39 @@ const LevelOne = () => {
             <table  id = 'centered' >
                 
 
-                    <td>
+                <td>
                     <div id = 'centered'><ul id = 'horizontal-list'>{subblocksa.map(block => (<li key = {block}>{block}</li>))}
                     </ul></div>
                     
                     <tr>
                         <td>
-                        <div id = 'centered'>
-                        <ul id = 'horizontal-list'>{subblocksb.map(block => (<li key = {block}>{block}</li>))}
-                    </ul></div>
+                                                        <div id = 'centered'>
+                                                        <ul id = 'horizontal-list'>{subblocksb.map(block => (<li key = {block}>{block}</li>))}
+                                                        </ul></div>
                             <tr>
-                        <td>
-                        <div id = 'centered'>
-                        <ul id = 'horizontal-list'>{subblocksc.map(block => (<li key = {block}>{block}</li>))}
-                    </ul></div>
-                            <tr>
-                        <td>
-                        <div id = 'centered'>
-                        <ul id = 'horizontal-list'>{subblocksd.map(block => (<li key = {block}>{block}</li>))}
-                    </ul></div>
-                        </td>
-                        <td>
-                        <div id = 'centered'>
-                        <ul id = 'horizontal-list'>{subblockse.map(block => (<li key = {block}>{block}</li>))}
-                    </ul></div>
-                        </td>
-                    </tr>
-                        </td>
-                        <td>
-                        <div id = 'centered'>
-                        <ul id = 'horizontal-list'>{subblocksf.map(block => (<li key = {block}>{block}</li>))}
-                    </ul></div>
-                        </td>
-                    </tr>
+                                <td>
+                                    <div id = 'centered'>
+                                    <ul id = 'horizontal-list'>{subblocksc.map(block => (<li key = {block}>{block}</li>))}
+                                    </ul></div>
+                                    <tr>
+                                            <td>
+                                                <div id = 'centered'>
+                                                <ul id = 'horizontal-list'>{subblocksd.map(block => (<li key = {block}>{block}</li>))}
+                                                </ul></div>
+                                            </td>
+                                            <td>
+                                                <div id = 'centered'>
+                                                <ul id = 'horizontal-list'>{subblockse.map(block => (<li key = {block}>{block}</li>))}
+                                                </ul></div>
+                                            </td>
+                                    </tr>
+                                </td>
+                                <td>
+                                    <div id = 'centered'>
+                                    <ul id = 'horizontal-list'>{subblocksf.map(block => (<li key = {block}>{block}</li>))}
+                                    </ul></div>
+                                </td>
+                            </tr>
                         </td>
                         <td>
                         <div id = 'centered'>
@@ -501,7 +501,7 @@ const LevelOne = () => {
                     </tr>
                         </td>
                     </tr>
-                    </td>
+                </td>
 
                     <td>
                     <div id = 'centered'>

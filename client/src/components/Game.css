@@ -68,28 +68,26 @@ button {
   padding: 13px 10px;
 }
 
-#wrapper{
-  overflow:  hidden;
+a{
   align-items: center;
   justify-content: center;
+  display: flex;
+  flex-Direction: row;
+  
 }
-#inner1 {
-  width: 600px;
-  float:left; 
+b{
+  align-items: center;
   justify-content: center;
+  display: flex;
+  flex-Direction: column;
+  
+}
+custom{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-Direction: row;
   
 }
 
-#inner2 {
-  width: 300px;
-  float:left; 
-  justify-content: center;
-  
-}
 
-#inner3 {
-  width: 150px;
-  float:left; 
-  justify-content: center;
-  
-}
