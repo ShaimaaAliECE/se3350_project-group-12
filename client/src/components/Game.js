@@ -37,7 +37,7 @@ const Game = () => {
 
             <div className = "progressBar">
                 <p>
-                <button onClick = {() => {setLevel(level-1)}}>PREVIOUS LEVEL</button>
+                <button onClick = {() => {if(!(level==1)){setLevel(level-1)}}}>PREVIOUS LEVEL</button>
                 <button onClick = {() => {setLevel(level+1)}}>NEXT LEVEL</button>
                 <button onClick = {() => {setLives(lives+1)}}>ADD LIFE</button>
                 <button onClick = {() => {setLives(lives-1)}}>SUBTRACT LIFE</button>
