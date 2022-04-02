@@ -3,7 +3,7 @@ import "../Login.css";
 import Timer from './Timer'
 import WinnerLoser from './WinnerLoser'
 
-const LevelTemplate = ({lives, setLives, level, setLevel}) => {
+const LevelThree_Main = ({lives, setLives, level, setLevel}) => {
 
   const [len, setLength] = useState(10);
   const [blocks, setBlocks] = useState([]);
@@ -30,6 +30,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
   const [mergeCounter, setmergeCounter] = useState(0);
   const [instruct, setInst]=useState('');
   const [answer, setAns]=useState('');
+  const [startmsg, setStartMsg] = useState('enter "start" in the field above first, and then the first segment of the array!');
   const [done, setDone]=useState('');
   const [brief]=useState('Enter the segment of the array you expect to occur in the next step in the format "1,2,3,4,5": ');
   const [Messages, setErrorMessages] = useState({});
@@ -41,19 +42,26 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
       right: "correct!"
     });
     
-  const generateRandomArray = (len) => {
+    const generateRandomArray = (len, max=20) => {
+      //fills array with every number from 1 to array length
+    const largeArray = Array.from(Array(max + 1).keys()).slice(1)
+		const randomArray =[]
+    //randomly swaps numbers in large array
+		for (let i = max-1; i > 0; i--) {
+			const randomIndex = Math.floor(Math.random() * (i - 1))
+			const temp = largeArray[i]
 
-    const randomArray = Array.from(Array(len + 1).keys()).slice(1)
-    
-    for (let i = randomArray.length - 1; i > 0; i--) {
-      const randomIndex = Math.floor(Math.random() * (i - 1))
-      const temp = randomArray[i]
-
-      randomArray[i] = randomArray[randomIndex]
-      randomArray[randomIndex] = temp
+			largeArray[i] = largeArray[randomIndex]
+			largeArray[randomIndex] = temp
+		}
+    //console.log(largeArray);
+    //selects the first 10 numbers form large array to put into a smaller one
+    for(let i=0;i<len;i++){
+      randomArray[i]=largeArray[i]
     }
-    
-    setBlocks(randomArray)
+    //console.log(randomArray);
+		//set the blocks to the generated random array
+		setBlocks(randomArray)
 	}
 
 
@@ -87,14 +95,13 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
 
     let inst = '';
 
-  inst='enter "start" in the field above first, and then the first segment of the array!'
-  setInst(inst); 
+
   storeArray(a1,a2,0,4);
   database.k1 = (a2.toString());
   setAns(database.k1);
 
   if(nextCounter==1){
-    //inst='first the first half of the array is copied into a sub array'
+    inst='first the first half of the array is copied into a sub array'
     setInst(inst); 
     storeArray(a1,a2,0,4);
     setBlocksa(a2);  
@@ -105,7 +112,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
   } 
   else
   if(nextCounter==2){  
-    //inst='this array is then split in half until the resulting array is length 1'
+    inst='this array is then split in half until the resulting array is length 1'
     setInst(inst); 
     storeArray(a1,a3,0,2);
     setBlocksb(a3);  
@@ -124,7 +131,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==4){
-    //inst='this array is then split in half until the resulting array is length 1'
+    inst='this array is then split in half until the resulting array is length 1'
     setInst(inst); 
     let a5=[];
     storeArray(a1,a5,0,0);
@@ -136,7 +143,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==5){
-    //inst='the other half of the array is then put into a sub array'
+    inst='the other half of the array is then put into a sub array'
     setInst(inst); 
     let a6=[];
     storeArray(a1,a6,1,1);
@@ -148,7 +155,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==6){
-    //inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
+    inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
     setInst(inst);
     //first merge
     merge(a1,0,0,1);
@@ -161,7 +168,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==7){
-    //inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array, the length of this array is one so its finished'
+    inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array, the length of this array is one so its finished'
     setInst(inst);
     let a7=[];
     storeArray(a1,a7,2,2);
@@ -174,7 +181,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
   }
   if(nextCounter==8){
     //second merge
-    //inst='these 2 sub arrays are then sorted and merged into the previous array'
+    inst='these 2 sub arrays are then sorted and merged into the previous array'
     setInst(inst);
     merge(a1,0,1,2);
     storeArray(a1,a3,0,2);    
@@ -185,7 +192,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==9){
-    //inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array'
+    inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array'
     setInst(inst);
     storeArray(a1,a8,3,4);
     setBlocksg(a8); 
@@ -196,7 +203,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==10){
-    //inst='this array is then split in half until the resulting array is length 1'
+    inst='this array is then split in half until the resulting array is length 1'
     setInst(inst); 
     let a9=[];
     storeArray(a1,a9,3,3);
@@ -208,7 +215,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==11){
-    //inst='the other half of the  array is then put into a sub array'
+    inst='the other half of the  array is then put into a sub array'
     setInst(inst);
     let a10=[];
     storeArray(a1,a10,4,4);
@@ -220,7 +227,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==12){
-    //inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
+    inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
     setInst(inst);
     merge(a1,3,3,4);
     storeArray(a1,a8,3,4);  
@@ -232,7 +239,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==13){
-    //inst='these 2 sorted arrays are merged into their parent array and sorted'
+    inst='these 2 sorted arrays are merged into their parent array and sorted'
     setInst(inst);
     merge(a1,0,2,4);
     storeArray(a1,a2,0,4);
@@ -243,7 +250,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==14){
-    //inst='The original array is now the olldest unsorted array so its unsorted half is taken and put into a sub array'
+    inst='The original array is now the olldest unsorted array so its unsorted half is taken and put into a sub array'
     setInst(inst);
     storeArray(a1,a11,5,9);
     setBlocksj(a11);
@@ -253,7 +260,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==15){
-    //inst='this array is then split in half until the resulting array is length 1'
+    inst='this array is then split in half until the resulting array is length 1'
     setInst(inst);
     storeArray(a1,a12,5,7);
     setBlocks11(a12);
@@ -282,7 +289,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==18){  
-    //inst='the other half of the array is then put into a sub array'
+    inst='the other half of the array is then put into a sub array'
     setInst(inst);
     let a15=[];
     storeArray(a1,a15,6,6);
@@ -294,7 +301,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==19){
-    //inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
+    inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
     setInst(inst);
     merge(a1,5,5,6);
     storeArray(a1,a13,5,6);
@@ -306,7 +313,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==20){
-    //inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array, the length of this array is one so its finnished'
+    inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array, the length of this array is one so its finnished'
     setInst(inst);
     let a16=[];
     storeArray(a1,a16,7,7);
@@ -318,7 +325,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==21){
-    //inst='these 2 sub arrays are then sorted and merged into the previous array'
+    inst='these 2 sub arrays are then sorted and merged into the previous array'
     setInst(inst);
     merge(a1,5,6,7);
     storeArray(a1,a12,5,7);
@@ -329,7 +336,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==22){
-    //inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array'
+    inst='After merging one sub array the other half of the newest unsorted array is then put into a sub array'
     setInst(inst);
     storeArray(a1,a17,8,9);
     setBlocks16(a17); 
@@ -340,7 +347,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==23){
-    //inst='this array is then split in half until the resulting array is length 1'
+    inst='this array is then split in half until the resulting array is length 1'
     setInst(inst);
     let a18=[];
     storeArray(a1,a18,8,8);
@@ -352,7 +359,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==24){
-    //inst='the other half of the array is then put into a sub array'
+    inst='the other half of the array is then put into a sub array'
     setInst(inst);
     let a19=[];
     storeArray(a1,a19,9,9);
@@ -364,7 +371,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==25){
-    //inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
+    inst='these 2 sub arrays are then sorted and merged into the previous array, this array is now sorted'
     setInst(inst);
     merge(a1,8,8,9);
     storeArray(a1,a17,8,9);
@@ -376,7 +383,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==26){
-    //inst='these 2 sorted arrays are merged into their parent array and sorted'
+    inst='these 2 sorted arrays are merged into their parent array and sorted'
     setInst(inst);
     merge(a1,5,7,9);
     storeArray(a1,a11,5,9);
@@ -387,7 +394,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     setAns(database.k1);
   }
   if(nextCounter==27){
-    //inst='finally the parent array is the only unsorted array, the 2 sub arrays are merged and sored resulting in the final array'
+    inst='finally the parent array is the only unsorted array, the 2 sub arrays are merged and sored resulting in the final array'
     setInst(inst);
     merge(a1,0,4,9);
     setBlocks(a1);
@@ -551,6 +558,10 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
             </p>
       </div>
 
+      <div id='centered'>
+        <h2>{startmsg}</h2>
+      </div>
+
       <div>
 
           <div className = 'question' id = 'centered'>
@@ -558,9 +569,6 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
           {done}
           </div>
 
-          <div className = 'question' id = 'centered'>
-          {instruct}
-          </div>
           
           <div className = 'table'>
               <ul id = 'horizontal-list'>{blocks.map(block => (<li key = {block}>{block}</li>))}
@@ -684,4 +692,4 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     )
   }
 
-export default LevelTemplate
+export default LevelThree_Main

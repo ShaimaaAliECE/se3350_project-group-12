@@ -3,7 +3,7 @@ import "../Login.css";
 import Timer from './Timer'
 import WinnerLoser from './WinnerLoser'
 
-const LevelTemplate = ({lives, setLives, level, setLevel}) => {
+const LevelTwo_Main = ({lives, setLives, level, setLevel}) => {
 
   const [len, setLength] = useState(10);
   const [blocks, setBlocks] = useState([]);
@@ -30,6 +30,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
   const [mergeCounter, setmergeCounter] = useState(0);
   const [instruct, setInst]=useState('');
   const [answer, setAns]=useState('');
+  const [startmsg, setStartMsg] = useState('enter "start" in the field above first, and then the first segment of the array!');
   const [done, setDone]=useState('');
   const [brief]=useState('Enter the segment of the array you expect to occur in the next step in the format "1,2,3,4,5": ');
   const [Messages, setErrorMessages] = useState({});
@@ -41,19 +42,26 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
       right: "correct!"
     });
     
-  const generateRandomArray = (len) => {
+    const generateRandomArray = (len, max=20) => {
+      //fills array with every number from 1 to array length
+    const largeArray = Array.from(Array(max + 1).keys()).slice(1)
+		const randomArray =[]
+    //randomly swaps numbers in large array
+		for (let i = max-1; i > 0; i--) {
+			const randomIndex = Math.floor(Math.random() * (i - 1))
+			const temp = largeArray[i]
 
-    const randomArray = Array.from(Array(len + 1).keys()).slice(1)
-    
-    for (let i = randomArray.length - 1; i > 0; i--) {
-      const randomIndex = Math.floor(Math.random() * (i - 1))
-      const temp = randomArray[i]
-
-      randomArray[i] = randomArray[randomIndex]
-      randomArray[randomIndex] = temp
+			largeArray[i] = largeArray[randomIndex]
+			largeArray[randomIndex] = temp
+		}
+    //console.log(largeArray);
+    //selects the first 10 numbers form large array to put into a smaller one
+    for(let i=0;i<len;i++){
+      randomArray[i]=largeArray[i]
     }
-    
-    setBlocks(randomArray)
+    //console.log(randomArray);
+		//set the blocks to the generated random array
+		setBlocks(randomArray)
 	}
 
 
@@ -87,8 +95,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
 
     let inst = '';
 
-  inst='enter "start" in the field above first, and then the first segment of the array!'
-  setInst(inst); 
+
   storeArray(a1,a2,0,4);
   database.k1 = (a2.toString());
   setAns(database.k1);
@@ -551,6 +558,10 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
             </p>
       </div>
 
+      <div id='centered'>
+        <h2>{startmsg}</h2>
+      </div>
+
       <div>
 
           <div className = 'question' id = 'centered'>
@@ -684,4 +695,4 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
     )
   }
 
-export default LevelTemplate
+export default LevelTwo_Main

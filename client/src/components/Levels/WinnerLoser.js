@@ -17,7 +17,7 @@ const WinnerLoser = ({lives, handleResetToStart, handleReset}) => {
         return (<>
             <h1>You lose :( You have no lives remaining. </h1>
             <button onClick = {handleResetToStart}>Try Again From Beginning</button>
-            <button onClick = {handleReset}>Try This Level Again</button>
+            <button onClick = {handleReset}>Try This Level's Step Again</button>
             </>);
     }
 
