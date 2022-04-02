@@ -3,7 +3,7 @@ import React from 'react'
 const WinSound = new Audio('/win.mp3');
 const LoseSound = new Audio('/lose.mp3');
 
-const WinnerLoser = ({lives, handleReset}) => {
+const WinnerLoser = ({lives, handleResetToStart, handleReset}) => {
 
     
     const Winner = () => {
@@ -16,7 +16,8 @@ const WinnerLoser = ({lives, handleReset}) => {
     const Loser = () => {
         return (<>
             <h1>You lose :( You have no lives remaining. </h1>
-            <button onClick = {handleReset}>Try Again</button>
+            <button onClick = {handleResetToStart}>Try Again From Beginning</button>
+            <button onClick = {handleReset}>Try This Level Again</button>
             </>);
     }
 

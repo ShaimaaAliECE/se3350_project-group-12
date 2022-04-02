@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import "../Login.css";
+import Timer from './Timer'
+import WinnerLoser from './WinnerLoser'
 
-const LevelTemplate = ({lives, setLives}) => {
+const LevelTemplate = ({lives, setLives, level, setLevel}) => {
 
-  const [level, setLevel] = useState(1);
   const [len, setLength] = useState(10);
   const [blocks, setBlocks] = useState([]);
   const [subblocksa, setBlocksa] = useState([]);
@@ -455,8 +456,6 @@ const LevelTemplate = ({lives, setLives}) => {
         }
     }
 
-    
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -506,14 +505,44 @@ const LevelTemplate = ({lives, setLives}) => {
     </div>
   );
 
+  const handleResetToStart = () => {
+    setLives(3);
+    setLevel(1);
+  }
+  const handleReset = () => {
+      setLives(3);
+      setLevel(6);
+  }
+
 //--------------------------------------------------------------------------------------------------------
 
     return (
+    
     <div>
+
+    <p>
+
+      <div className = "progressBar">
+        
+        <div>
+            Time:
+            {(() => {
+        		switch (1) {
+         			case 1:
+                return <Timer/>        
+        		}
+      		})()}
+        </div>
+
+        {
+          lives === 0 && <WinnerLoser lives = {lives} handleReset={() => handleReset()} handleResetToStart={() => handleResetToStart()}/>
+        }
+        
+      </div>
+      </p>
 
       <div id='centered'>
         <h2>{brief}</h2>
-        {lives}
       </div>
 
       <div id = 'centered'>
