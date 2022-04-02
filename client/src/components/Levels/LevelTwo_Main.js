@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import "../Login.css";
+import Timer from './Timer'
+import WinnerLoser from './WinnerLoser'
 
-const LevelTwo_Main = () => {
+const LevelTemplate = ({lives, setLives, level, setLevel}) => {
 
-  const [level, setLevel] = useState(1);
-  const [lives, setLives] = useState(3);
   const [len, setLength] = useState(10);
   const [blocks, setBlocks] = useState([]);
   const [subblocksa, setBlocksa] = useState([]);
@@ -31,7 +31,7 @@ const LevelTwo_Main = () => {
   const [instruct, setInst]=useState('');
   const [answer, setAns]=useState('');
   const [done, setDone]=useState('');
-  const [brief]=useState('Enter the segment of the array you expect to occur in the next step below: ');
+  const [brief]=useState('Enter the segment of the array you expect to occur in the next step in the format "1,2,3,4,5": ');
   const [Messages, setErrorMessages] = useState({});
   const [database] = useState({
     "k1": "start"
@@ -55,6 +55,7 @@ const LevelTwo_Main = () => {
     
     setBlocks(randomArray)
 	}
+
 
   useEffect(() => {generateRandomArray(len)}, [len, level, lives, algo])
 
@@ -86,8 +87,8 @@ const LevelTwo_Main = () => {
 
     let inst = '';
 
-  inst='start'
-  //setInst(inst); 
+  inst='enter "start" in the field above first, and then the first segment of the array!'
+  setInst(inst); 
   storeArray(a1,a2,0,4);
   database.k1 = (a2.toString());
   setAns(database.k1);
@@ -461,7 +462,10 @@ const LevelTwo_Main = () => {
     var { answer } = document.forms[0];
 
     if (database.k1 !== answer.value) {
+      event.preventDefault();
+      
       setErrorMessages({ name: "wrong", message: errors.wrong });
+      if(!(lives==0)){setLives(lives-1)};
     } 
     else {
       setErrorMessages({ name: "right", message: errors.right });
@@ -501,10 +505,41 @@ const LevelTwo_Main = () => {
     </div>
   );
 
+  const handleResetToStart = () => {
+    setLives(3);
+    setLevel(1);
+  }
+  const handleReset = () => {
+      setLives(3);
+      setLevel(2);
+  }
+
 //--------------------------------------------------------------------------------------------------------
 
     return (
+    
     <div>
+
+    <p>
+
+      <div className = "progressBar">
+        
+        <div>
+            Time:
+            {(() => {
+        		switch (1) {
+         			case 1:
+                return <Timer/>        
+        		}
+      		})()}
+        </div>
+
+        {
+          lives === 0 && <WinnerLoser lives = {lives} handleReset={() => handleReset()} handleResetToStart={() => handleResetToStart()}/>
+        }
+        
+      </div>
+      </p>
 
       <div id='centered'>
         <h2>{brief}</h2>
@@ -649,4 +684,4 @@ const LevelTwo_Main = () => {
     )
   }
 
-export default LevelTwo_Main
+export default LevelTemplate

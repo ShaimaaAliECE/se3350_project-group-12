@@ -31,7 +31,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
   const [instruct, setInst]=useState('');
   const [answer, setAns]=useState('');
   const [done, setDone]=useState('');
-  const [brief]=useState('Enter the segment of the array you expect to occur in the next step below: ');
+  const [brief]=useState('Enter the segment of the array you expect to occur in the next step in the format "1,2,3,4,5": ');
   const [Messages, setErrorMessages] = useState({});
   const [database] = useState({
     "k1": "start"
