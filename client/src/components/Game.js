@@ -69,11 +69,11 @@ const Game = () => {
           			case 3:
             			return <LevelThree_Main lives = {lives} setLives = {setLives} setLevel = {setLevel} level = {level}/>
                     case 4:
-                        return <LevelFour_Main/>
+                        return <LevelFour_Main lives = {lives} setLives = {setLives} setLevel = {setLevel} level = {level}/>
                     case 5:
-                        return <LevelFive_Main/>
+                        return <LevelFive_Main lives = {lives} setLives = {setLives} setLevel = {setLevel} level = {level}/>
                     case 6:
-                        return <LevelSix_Main/>
+                        return <LevelSix_Main lives = {lives} setLives = {setLives} setLevel = {setLevel} level = {level}/>
 					default:
             			return <WinnerLoser lives = {lives} handleReset={() => handleReset()}/>
                         
