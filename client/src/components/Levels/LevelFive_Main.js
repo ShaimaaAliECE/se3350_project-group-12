@@ -8,8 +8,8 @@ const LevelFive_Main = () => {
 
   const [level, setLevel] = useState(1);
   const [lives, setLives] = useState(3);
-  const [len, setLength] = useState(10);
-  const [numRange, setnumRange] = useState(10);
+  const [len, setLength] = useState(20);
+  const [numRange, setnumRange] = useState(50);
 
   const [blocks, setBlocks] = useState([]);
   const [algo, setAlgo] = useState('Merge');
@@ -18,7 +18,7 @@ const LevelFive_Main = () => {
   const [instruct, setInst]=useState('');
   const [answer, setAns]=useState('');
   const [done, setDone]=useState('');
-  const [brief]=useState('Enter the segment of the array you expect to occur in the next step below: ');
+  const [brief]=useState('Select a sub array and enter the segment you expect to be placed in the next step below');
   const [Messages, setErrorMessages] = useState({});
 
   const [database] = useState({
@@ -30,7 +30,7 @@ const LevelFive_Main = () => {
     });
 
   const [contents, setContent] = useState('<div>placehold</div>');
-  const [selected, setselect] = useState(0);
+  const [selected, setselect] = useState(-1);
   const [subBlocks,setSubBlocks]= useState([])
     
 
@@ -46,8 +46,8 @@ const LevelFive_Main = () => {
     //generateRandomArray(len)
     generateRandomArray(len,numRange)
     let a0=blocks
-    
     mergesortArray(a0,0,(len-1));
+    
     console.log (contents);
   
   }, [len, level, lives, algo])
@@ -83,6 +83,20 @@ const LevelFive_Main = () => {
         {destination[i]= source[low+i]}
     }
     */
+    const stepBack1=()=>{
+      //setSubBlocks([])
+      setNC(nextCounter-1);
+      let a0=blocks
+      mergesortArray(a0,0,(len-1));
+      answerArray(a0,0,len-1,subBlocks[0]);
+    }
+    const stepBack2=()=>{
+      //setSubBlocks([])
+      let a0=blocks
+      mergesortArray(a0,0,(len-1));
+      nextCounter--;
+      answerArray(a0,0,len-1,subBlocks[0]);
+    }
 
     
     let splitcounter=0
@@ -93,25 +107,24 @@ const LevelFive_Main = () => {
         {
         return
         }
-
+        let split = Math.floor((start+end)/2)
         if(stepcounter<nextCounter){
         stepcounter++;
         splitcounter++;
-        storeArray(arrayorigin,subBlocks[splitcounter],start,split)
-        let split = Math.floor((start+end)/2)
+        storeArray(arrayOrigin,subBlocks[splitcounter],start,split)
         answerArray(arrayOrigin, start, split,subBlocks[splitcounter])
         }
 
         if(stepcounter<nextCounter){
         stepcounter++;
         splitcounter++;
-        storeArray(arrayorigin,subBlocks[splitcounter],split+1,end)
-        answerArrayanswerArray(arrayOrigin, split+1,end,subBlocks[splitcounter])
+        storeArray(arrayOrigin,subBlocks[splitcounter],split+1,end)
+        answerArray(arrayOrigin, split+1,end,subBlocks[splitcounter])
         }
 
         if(stepcounter<nextCounter){
         stepcounter++;
-        merge(arrayorigin,start,split,end,arrayAt)
+        merge(arrayOrigin,start,split,end,arrayAt)
         }
         
     }
@@ -164,14 +177,27 @@ const LevelFive_Main = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    let a0=blocks
+    storeArray(a0,subBlocks[0],0,len-1)
 
+    answerArray(a0,0,len-1,subBlocks[0]);
+    //console.log(subBlocks[selected].toString());
+    if(!(selected==-1)){
+      database.k1 = (subBlocks[selected].toString());
+    }
     var { answer } = document.forms[0];
-
+    answerArray(a0,0,len-1,subBlocks[0]);
+    console.log(nextCounter);
     if (database.k1 !== answer.value) {
       setErrorMessages({ name: "wrong", message: errors.wrong });
+      //stepBack1();
+      //stepBack2();
     } 
     else {
       setErrorMessages({ name: "right", message: errors.right });
+      setNC(nextCounter+1);
+      //answerArray(a0,0,len-1,subBlocks[0]);
+      //console.log(subBlocks[selected].toString());
       next();
     };
   };
@@ -219,7 +245,7 @@ const LevelFive_Main = () => {
 //function to add arrays into subblocks to be accesed systematicaly
 const addBlocks=(namenumber)=>{
 
-  subBlocks.push(window['name'+namenumber]= [1,2,3]);
+  subBlocks.push(window['name'+namenumber]= []);
   
   
   }
@@ -298,12 +324,13 @@ const next = ()=>{
   //mergesortArray(a0,0,9);
   //console.log (contents);
   //console.log (selected);
-    setNC(nextCounter+1);
-
-    generateRandomArray(len,numRange)
-    addBlocks();
+    //setNC(nextCounter+1);
     let a0=blocks
-    storeArray(a0,subBlocks[0],0,len-1)
+    answerArray(a0,0,len-1,subBlocks[0]);
+    //generateRandomArray(len,numRange)
+    //addBlocks();
+    
+
 
   console.log (nextCounter);
   console.log (blocks);
@@ -352,9 +379,10 @@ const next = ()=>{
     return (
     <div>
 
-      <div id='centered'>
+      <b>
+        <div> <h2>Enter 'start' to Start</h2> </div>
         <h2>{brief}</h2>
-      </div>
+      </b>
 
       <div id = 'centered'>
             <p>
@@ -372,17 +400,9 @@ const next = ()=>{
           {done}
           </div>
           
-          <div id = 'centered'>
-                <p>
-                <button onClick={next}>
-                    NEXT
-                </button>
-                </p>
-                
-                
-            </div>
           
-          <div id = 'centered2'>hello{ReactHtmlParser(contents,{transform: parserTransform})}</div>
+          
+          <div id = 'centered2'>click a subarray to select it as the input destination {ReactHtmlParser(contents,{transform: parserTransform})}</div>
           
       </div>
     </div>

@@ -85,6 +85,7 @@ CustButton{
   margin: 0 5px;
   outline: none;
   padding: 1px 1px;
+  min-width: 15px;
 }
 
 a{
