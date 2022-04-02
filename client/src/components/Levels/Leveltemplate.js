@@ -6,6 +6,7 @@ const Leveltemplate = () => {
   const [level, setLevel] = useState(1);
   const [lives, setLives] = useState(3);
   const [len, setLength] = useState(10);
+  const [numRange, setnumRange] = useState(20);
   const [blocks, setBlocks] = useState([]);
   const [subblocksa, setBlocksa] = useState([]);
   const [subblocksb, setBlocksb] = useState([]);
@@ -41,22 +42,31 @@ const Leveltemplate = () => {
       right: "correct!"
     });
     
-  const generateRandomArray = (len) => {
+  //generate the random arrya for the user to work with
+    //edited so that it also takes a max numberfor an size len array with numbers from 1-max
+    const generateRandomArray = (len, max) => {
+      //fills array with every number from 1 to array length
+    const largeArray = Array.from(Array(max + 1).keys()).slice(1)
+		const randomArray =[]
+    //randomly swaps numbers in large array
+		for (let i = max-1; i > 0; i--) {
+			const randomIndex = Math.floor(Math.random() * (i - 1))
+			const temp = largeArray[i]
 
-    const randomArray = Array.from(Array(len + 1).keys()).slice(1)
-    
-    for (let i = randomArray.length - 1; i > 0; i--) {
-      const randomIndex = Math.floor(Math.random() * (i - 1))
-      const temp = randomArray[i]
-
-      randomArray[i] = randomArray[randomIndex]
-      randomArray[randomIndex] = temp
+			largeArray[i] = largeArray[randomIndex]
+			largeArray[randomIndex] = temp
+		}
+    //console.log(largeArray);
+    //selects the first 10 numbers form large array to put into a smaller one
+    for(let i=0;i<len;i++){
+      randomArray[i]=largeArray[i]
     }
-    
-    setBlocks(randomArray)
+    //console.log(randomArray);
+		//set the blocks to the generated random array
+		setBlocks(randomArray)
 	}
 
-  useEffect(() => {generateRandomArray(len)}, [len, level, lives, algo])
+  useEffect(() => {generateRandomArray(len,numRange)}, [len, level, lives, algo])
 
   const next = ()=>{//wip
       

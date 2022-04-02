@@ -9,6 +9,8 @@ const LevelFive_Main = () => {
   const [level, setLevel] = useState(1);
   const [lives, setLives] = useState(3);
   const [len, setLength] = useState(10);
+  const [numRange, setnumRange] = useState(10);
+
   const [blocks, setBlocks] = useState([]);
   const [algo, setAlgo] = useState('Merge');
   const [nextCounter,setNC]=useState(0);
@@ -42,10 +44,8 @@ const LevelFive_Main = () => {
 
   useEffect(() => {
     //generateRandomArray(len)
-    generateRandomArray(len,10)
-    addBlocks();
+    generateRandomArray(len,numRange)
     let a0=blocks
-    storeArray(a0,subBlocks[0],0,len-1)
     
     mergesortArray(a0,0,(len-1));
     console.log (contents);
@@ -75,6 +75,7 @@ const LevelFive_Main = () => {
 
   //--------------------------------------------------------------------------------------------------------------------------------------------------------
   //extra copy of merge sort
+  //addapted to increment through the steps of merge sort and fill out the subblocks arrays
   /*
     //function to store thr randomly generated values into sub arrays to be viwed by the user when needed
     const storeArray= (source, destination, low,high)=>{
@@ -83,62 +84,81 @@ const LevelFive_Main = () => {
     }
     */
 
-    /*
+    
+    let splitcounter=0
+    let stepcounter=0
 //an actual merge sort algrithim, im stuck trying to get it to translate properly to a graphic so this will not be included in this release
-    const mergesortArray= (arrayph, start, end) => {//wip
-        if (!start<end )
+    const  answerArray= (arrayOrigin, start, end, arrayAt) => {//wip
+        if (start==end )
         {
         return
         }
-        setmergeCounter(mergeCounter+1)
 
+        if(stepcounter<nextCounter){
+        stepcounter++;
+        splitcounter++;
+        storeArray(arrayorigin,subBlocks[splitcounter],start,split)
         let split = Math.floor((start+end)/2)
-        mergesortArray(arrayph, start, split)
+        answerArray(arrayOrigin, start, split,subBlocks[splitcounter])
+        }
 
-        mergesortArray(arrayph, split+1,end)
+        if(stepcounter<nextCounter){
+        stepcounter++;
+        splitcounter++;
+        storeArray(arrayorigin,subBlocks[splitcounter],split+1,end)
+        answerArrayanswerArray(arrayOrigin, split+1,end,subBlocks[splitcounter])
+        }
 
-        merge(arrayph, start,split,end)
+        if(stepcounter<nextCounter){
+        stepcounter++;
+        merge(arrayorigin,start,split,end,arrayAt)
+        }
         
     }
-    */
+    
 
-    /*
-    const merge= (arrayph, start,split,end) =>{//wip
-        let l1= split-start+1
-        let l2= end- split
-        const a1=[];
-        const a2=[];
-        for(let i = 0; i<l1;i++)
-        {a1[i]= arrayph[start+i]}
-        for(let i = 0; i<l2;i++)
-        {a2[i]= arrayph[split+1+i]}
-        let i = 0;
-        let j = 0;
-        let k = start;
-        while (i < l1 && j < l2) {
-            if (a1[i] <= a2[j]) {
-                arrayph[k] = a1[i];
-                i++;
-            } else {
-                arrayph[k] = a2[j];
-                j++;
-            }
-            k++;
-        }
-
-        while (i < l1) {
+    
+   const merge= (arrayph, start,split,end,store) =>{//wip
+    let l1= split-start+1
+    let l2= end- split
+    let l3= end-start+1
+    const a1=[];
+    const a2=[];
+    for(let i = 0; i<l1;i++)
+    {a1[i]= arrayph[start+i]}
+    for(let i = 0; i<l2;i++)
+    {a2[i]= arrayph[split+1+i]}
+    let i = 0;
+    let j = 0;
+    let k = start;
+    while (i < l1 && j < l2) {
+        if (a1[i] <= a2[j]) {
             arrayph[k] = a1[i];
             i++;
-            k++;
-        }
-    
-        while (j < l2) {
+        } else {
             arrayph[k] = a2[j];
             j++;
-            k++;
         }
+        k++;
     }
-    */
+  
+    while (i < l1) {
+        arrayph[k] = a1[i];
+        i++;
+        k++;
+    }
+  
+    while (j < l2) {
+        arrayph[k] = a2[j];
+        j++;
+        k++;
+    }
+    for(let i = 0; i<l3;i++)
+    {store[i]= arrayph[start+i]}
+    
+  
+  }
+    
    //-----------------------------------------------------------------------------------------------------------------------
    //form code
 
@@ -230,8 +250,7 @@ const addBlocks=(namenumber)=>{
   
   
     
-    //generateRandomArray(len);
-    //mergesortArray(blocks,0,9);
+    
 
   //a mergesort styled algorythim,used to auto generate an array in the desired shape 
   //counter counts the index of the created button and content stores the html string to be used.
@@ -270,54 +289,24 @@ const addBlocks=(namenumber)=>{
     
   }
   
-  const merge= (arrayph, start,split,end) =>{//wip
-    let l1= split-start+1
-    let l2= end- split
-    const a1=[];
-    const a2=[];
-    for(let i = 0; i<l1;i++)
-    {a1[i]= arrayph[start+i]}
-    for(let i = 0; i<l2;i++)
-    {a2[i]= arrayph[split+1+i]}
-    let i = 0;
-    let j = 0;
-    let k = start;
-    while (i < l1 && j < l2) {
-        if (a1[i] <= a2[j]) {
-            arrayph[k] = a1[i];
-            i++;
-        } else {
-            arrayph[k] = a2[j];
-            j++;
-        }
-        k++;
-    }
   
-    while (i < l1) {
-        arrayph[k] = a1[i];
-        i++;
-        k++;
-    }
-  
-    while (j < l2) {
-        arrayph[k] = a2[j];
-        j++;
-        k++;
-    }
-    
-  
-  }
 
   //function that runs when nex is pressed, used for testing here
 const next = ()=>{
   //generateRandomArray(len);
-  let a0=blocks
+  
   //mergesortArray(a0,0,9);
   //console.log (contents);
   //console.log (selected);
-  addBlocks();
-  
-  console.log (subBlocks);
+    setNC(nextCounter+1);
+
+    generateRandomArray(len,numRange)
+    addBlocks();
+    let a0=blocks
+    storeArray(a0,subBlocks[0],0,len-1)
+
+  console.log (nextCounter);
+  console.log (blocks);
   //storeArray(a0,subBlocks[0],0,5)
   console.log (subBlocks);
 }
