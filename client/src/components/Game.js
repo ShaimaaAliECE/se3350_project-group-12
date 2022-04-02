@@ -7,7 +7,7 @@ import LevelTwo_Main from './Levels/LevelTwo_Main'
 import LevelThree_Main from './Levels/LevelThree_Main'
 import LevelFour_Main from './Levels/LevelFour_Main'
 import LevelFive_Main from './Levels/LevelFive_Main'
-import LevelTemplate from './Levels/LevelTemplate'
+import LevelTemplate from './Levels/Leveltemplate'
 import WinnerLoser from './Levels/WinnerLoser'
 
 const Game = () => {

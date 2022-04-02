@@ -6,6 +6,7 @@ import WinnerLoser from './WinnerLoser'
 const LevelTemplate = ({lives, setLives, level, setLevel}) => {
 
   const [len, setLength] = useState(10);
+  const [numRange, setnumRange] = useState(20);
   const [blocks, setBlocks] = useState([]);
   const [subblocksa, setBlocksa] = useState([]);
   const [subblocksb, setBlocksb] = useState([]);
@@ -64,8 +65,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
 		setBlocks(randomArray)
 	}
 
-
-  useEffect(() => {generateRandomArray(len)}, [len, level, lives, algo])
+  useEffect(() => {generateRandomArray(len,numRange)}, [len, level, lives, algo])
 
   const next = ()=>{//wip
       
