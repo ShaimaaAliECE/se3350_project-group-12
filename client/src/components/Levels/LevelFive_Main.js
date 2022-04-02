@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react'
-import "../Login.css";
+import "../Login.css"; 
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import Timer from './Timer' 
+import WinnerLoser from './WinnerLoser'
 
 //you will need to use command 'npm install react-html-parser'and 'npm install buffer' to install additional packages
 
-const LevelFive_Main = () => {
+const LevelFive_Main = ({lives, setLives, level, setLevel}) => {
 
-  const [level, setLevel] = useState(1);
-  const [lives, setLives] = useState(3);
   const [len, setLength] = useState(50);
   const [numRange, setnumRange] = useState(100);
 
@@ -190,6 +190,7 @@ const LevelFive_Main = () => {
     console.log(nextCounter);
     if (database.k1 !== answer.value) {
       setErrorMessages({ name: "wrong", message: errors.wrong });
+      if(!(lives==0)){setLives(lives-1)};
       //stepBack1();
       //stepBack2();
     } 
@@ -370,7 +371,14 @@ const next = ()=>{
 	}
 
 
-
+  const handleResetToStart = () => {
+    setLives(3);
+    setLevel(1);
+  }
+  const handleReset = () => {
+      setLives(3);
+      setLevel(5);
+  }
 
 
 
@@ -378,6 +386,20 @@ const next = ()=>{
 
     return (
     <div>
+
+      <div>
+          Time:
+          {(() => {
+          switch (1) {
+            case 1:
+              return <Timer/>        
+          }
+        })()}
+      </div>
+
+      {
+        lives === 0 && <WinnerLoser lives = {lives} handleReset={() => handleReset()} handleResetToStart={() => handleResetToStart()}/>
+      }
 
       <b>
         <div> <h2>Enter 'start' to Start</h2> </div>

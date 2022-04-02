@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import MergeSorted from './MergeSorted'
+import Timer from './Timer' 
 
 
 const LevelOne = () => {
@@ -424,6 +424,18 @@ const LevelOne = () => {
 
     return (
         <div>
+
+        <p></p>
+
+        <div>
+            Time:
+            {(() => {
+        		switch (1) {
+         			case 1:
+                return <Timer/>        
+        		}
+      		})()}
+        </div>
 
             <div className = 'question' id = 'centered'>
             {instruct}
