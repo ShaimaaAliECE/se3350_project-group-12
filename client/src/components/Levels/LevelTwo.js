@@ -1,7 +1,9 @@
 import React, {useState,useEffect} from 'react'
 import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd'; //allow us the ability to use this library
 import { v4 as uuid } from 'uuid';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
+//might need to use command 'npm install react-html-parser'and 'npm install buffer'
 //might need to use command "npm add uuid react-beautiful-dnd" to download library locally
 
 const itemsFromBackend = [
@@ -82,6 +84,8 @@ const LevelTwo = () => {
     const [instruct, setInst] = useState('Click next to start');
     const [columns, setColumns] = useState(columnsFromBackend);
     const [contents, setContent] = useState('<div>placehold</div>');
+    const [selected, setselect] = useState(0);
+    const [subBlocks,setSubBlocks]= useState([])
     
 
     //these functions will allow for us to track the amount of time spent after a new page is loaded
@@ -100,59 +104,85 @@ const LevelTwo = () => {
     }
 
     //generate the random arrya for the user to work with
-    const generateRandomArray = (len) => {
-
-		const randomArray = Array.from(Array(len + 1).keys()).slice(1)
-		
-		for (let i = randomArray.length - 1; i > 0; i--) {
+    //edited so that it also takes a max numberfor an size len array with numbers from 1-max
+    const generateRandomArray = (len, max) => {
+      //fills array with every number from 1 to array length
+    const largeArray = Array.from(Array(max + 1).keys()).slice(1)
+		const randomArray =[]
+    //randomly swaps numbers in large array
+		for (let i = max-1; i > 0; i--) {
 			const randomIndex = Math.floor(Math.random() * (i - 1))
-			const temp = randomArray[i]
+			const temp = largeArray[i]
 
-			randomArray[i] = randomArray[randomIndex]
-			randomArray[randomIndex] = temp
+			largeArray[i] = largeArray[randomIndex]
+			largeArray[randomIndex] = temp
 		}
+    //console.log(largeArray);
+    //selects the first 10 numbers form large array to put into a smaller one
+    for(let i=0;i<len;i++){
+      randomArray[i]=largeArray[i]
+    }
+    //console.log(randomArray);
 		//set the blocks to the generated random array
 		setBlocks(randomArray)
 	}
+
+
+
+//generate the table structure
   useEffect(() => {
-    generateRandomArray(len)
+    generateRandomArray(len,10)
+    addBlocks();
     let a0=blocks
-    mergesortArray(a0,0,9);
-    /*
-    setContent(`<b>flag
-    <custom>
-      
-      <b>
-      flag2
-        <custom>
-          <b>flag3</b>
-
-          <b>flag4</b>  
-        </custom>
-      </b>
-      
-      <b>
-      flag5
-        <custom>
-          <b>flag6</b>
-
-          <b>flag7</b>  
-        </custom>
-      </b>  
-      
-    </custom>
+    storeArray(a0,subBlocks[0],0,5)
     
-   
-    </b>`);
-    */
+    mergesortArray(a0,0,(len-1));
+    
     
     console.log (contents);
 
 }, [len, level, lives, algo])
 
 
-  let content='';
+//function to add arrays into subblocks to be accesed systematicaly
+const addBlocks=(namenumber)=>{
+
+subBlocks.push(window['name'+namenumber]= [1,2,3]);
+
+
+}
+
+//button handelling
+const selectdest=(num)=> {
+  console.log ('flaga')
+  console.log (num);
+  setselect(num);
+  console.log (selected);
+ }
+ //checks if a number is an int so i can use the text element of my buttons so select positions in arrays
+  const checkparseint=(num)=>{
+    const parsed = parseInt(num, 10);
+    if (isNaN(parsed)) { return 0; }
+    return parsed ;
+  }
+
+ //seting the event on the auto gened buttons cause react html parser is mean to me
+ function parserTransform(node){
+   
+  if (node.type === 'tag' && node.name === 'button') {
+    let i = node.children[0].data
+    let j= checkparseint(i);
+    return <custbutton onClick={()=>selectdest(node.children[0].data)}><ul id = 'horizontal-list'>{subBlocks[j].map(block => (<li key = {block}>{block}</li>))}</ul></custbutton>;
+    
+  }
+
+
+ }
+
+
   let counter =0;
+  let content='<b><button onClick={console.log('+counter+')}>'+counter+'</button></b>';
+  addBlocks();
   //generateRandomArray(len);
   //mergesortArray(blocks,0,9);
 //an actual merge sort algrithim,used to auto gen an array
@@ -169,7 +199,9 @@ const mergesortArray= (arrayph, start, end) => {//wip
   
   content+= '<b>'
   counter ++;
-  content+= counter//'<div>'+counter+'</div>'
+  addBlocks();
+  content+= '<button onClick={console.log('+counter+')}>'+counter+'</button>'
+  
   let split = Math.floor((start+end)/2)
   mergesortArray(arrayph, start, split)
   content+= '</b>'
@@ -178,7 +210,9 @@ const mergesortArray= (arrayph, start, end) => {//wip
   
   content+= '<b>'
   counter++
-  content+=counter//'<div>'+counter+'</div>'
+  addBlocks();
+  content+='<button onClick={selectdest('+counter+')}>'+counter+'</button>'
+  
   mergesortArray(arrayph, split+1,end)
   content+= '</b>'
   content+='</custom>'
@@ -188,6 +222,7 @@ const mergesortArray= (arrayph, start, end) => {//wip
   
   //merge(arrayph, start,split,end)
   setContent(content);
+  
 }
 
 const merge= (arrayph, start,split,end) =>{//wip
@@ -228,12 +263,22 @@ const merge= (arrayph, start,split,end) =>{//wip
 
 }
 const next = ()=>{
-  generateRandomArray(len);
+  //generateRandomArray(len);
   let a0=blocks
-  mergesortArray(a0,0,9);
-  console.log (contents);
+  //mergesortArray(a0,0,9);
+  //console.log (contents);
+  //console.log (selected);
+  addBlocks();
   
-  
+  console.log (subBlocks);
+  //storeArray(a0,subBlocks[0],0,5)
+  console.log (subBlocks);
+}
+
+ //function to store thr randomly generated values into sub arrays to be viwed by the user when needed
+ const storeArray= (source, destination, low,high)=>{
+  for(let i = 0; i<((high-low)+1);i++)
+  {destination[i]= source[low+i]}  
 }
 
 
@@ -250,6 +295,8 @@ const next = ()=>{
                     NEXT
                 </button>
                 </p>
+                
+                
             </div>
             
         <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
@@ -383,8 +430,10 @@ const next = ()=>{
 
 
         
+        <div id = 'centered2'>hello{ReactHtmlParser(contents,{transform: parserTransform})}</div>
+        
+      {/*<div id = 'centered' dangerouslySetInnerHTML={{__html: contents}}/>*/}
       
-      <div id = 'centered' dangerouslySetInnerHTML={{__html: contents}}/>
       </div>
 
       </div>

@@ -26,6 +26,12 @@
   align-items: center;
   justify-content: center;
 }
+#centered2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-Direction: column;
+}
 
 form {
   padding: 0.2em;
@@ -40,9 +46,10 @@ ul#horizontal-list {
   padding: 0.1em;
   padding-top: 0.1em;
   padding-bottom: 0.1em;
-  padding-right: 0.5em;
-  padding-left: 0.5em;
+  padding-right: 0.1em;
+  padding-left: 0.1em;
 }
+
 ul#horizontal-list li {
   display: inline;
   color: white;
@@ -66,6 +73,18 @@ button {
   margin: 0 10px;
   outline: none;
   padding: 13px 10px;
+}
+
+CustButton{
+  background-color: #444465;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 0.7em;
+  margin: 0 5px;
+  outline: none;
+  padding: 1px 1px;
 }
 
 a{
