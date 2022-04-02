@@ -32,15 +32,6 @@ const LevelFour_Main = ({lives, setLives, level, setLevel}) => {
   const [selected, setselect] = useState(-1);
   const [subBlocks,setSubBlocks]= useState([])
     
-
-
-
-
-
-
-
-  
-
   useEffect(() => {
     //generateRandomArray(len)
     generateRandomArray(len,numRange)
