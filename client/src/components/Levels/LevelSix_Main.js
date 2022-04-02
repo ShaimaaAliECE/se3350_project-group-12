@@ -4,12 +4,12 @@ import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from
 
 //you will need to use command 'npm install react-html-parser'and 'npm install buffer' to install additional packages
 
-const LevelFive_Main = () => {
+const LevelSix_Main = () => {
 
   const [level, setLevel] = useState(1);
   const [lives, setLives] = useState(3);
-  const [len, setLength] = useState(50);
-  const [numRange, setnumRange] = useState(100);
+  const [len, setLength] = useState(10);
+  const [numRange, setnumRange] = useState(10);
 
   const [blocks, setBlocks] = useState([]);
   const [algo, setAlgo] = useState('Merge');
@@ -83,20 +83,7 @@ const LevelFive_Main = () => {
         {destination[i]= source[low+i]}
     }
     */
-    const stepBack1=()=>{
-      //setSubBlocks([])
-      setNC(nextCounter-1);
-      let a0=blocks
-      mergesortArray(a0,0,(len-1));
-      answerArray(a0,0,len-1,subBlocks[0]);
-    }
-    const stepBack2=()=>{
-      //setSubBlocks([])
-      let a0=blocks
-      mergesortArray(a0,0,(len-1));
-      nextCounter--;
-      answerArray(a0,0,len-1,subBlocks[0]);
-    }
+    
 
     
     let splitcounter=0
@@ -233,6 +220,47 @@ const LevelFive_Main = () => {
         </div>
     </div>
   );
+
+  //size change form code
+  const handleSizeChange= (event)=>{
+    event.preventDefault();
+    var { size,range } = document.forms[0];
+    
+    //
+    
+    let a= size.value;
+    let b= range.value;
+    console.log(parseInt(a,10));
+    setLength(parseInt(a,10));
+    setnumRange(parseInt(a,10));
+
+    generateRandomArray(len,numRange)
+    let a0=blocks
+    mergesortArray(a0,0,(len-1));
+    
+}
+
+  const sizeChange=(
+   
+    <div className="form">
+      <form onSubmit={handleSizeChange}>
+        <div className="input-container">
+            Enter the size of your array
+          <input type="text" name="size" required />
+            Enter the max range of the numbers in your array
+          <input type="text" name="range" required />
+        </div>
+        <div className="button-container">
+          <input type="submit" />
+        </div>
+      </form>
+    </div>
+    
+
+  );
+  
+    
+
 
 //--------------------------------------------------------------------------------------------------------
 //code for procedural generation
@@ -380,6 +408,7 @@ const next = ()=>{
     <div>
 
       <b>
+          <div id = 'centered'><p>{sizeChange}</p></div>
         <div> <h2>Enter 'start' to Start</h2> </div>
         <h2>{brief}</h2>
       </b>
@@ -409,4 +438,4 @@ const next = ()=>{
     )
   }
 
-export default LevelFive_Main
+export default LevelSix_Main
