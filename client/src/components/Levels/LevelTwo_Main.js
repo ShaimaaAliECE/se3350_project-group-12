@@ -536,10 +536,12 @@ const LevelTwo_Main = ({lives, setLives, level, setLevel}) => {
             {(() => {
         		switch (1) {
          			case 1:
-                return <Timer/>        
+                return <Timer/>
         		}
       		})()}
         </div>
+        
+
 
         {
           lives === 0 && <WinnerLoser lives = {lives} handleReset={() => handleReset()} handleResetToStart={() => handleResetToStart()}/>

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import "../Login.css";
+import "../Login.css"; 
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import Timer from './Timer' 
 
 //you will need to use command 'npm install react-html-parser'and 'npm install buffer' to install additional packages
 
@@ -378,6 +379,16 @@ const next = ()=>{
 
     return (
     <div>
+
+      <div>
+          Time:
+          {(() => {
+          switch (1) {
+            case 1:
+              return <Timer/>        
+          }
+        })()}
+      </div>
 
       <b>
         <div> <h2>Enter 'start' to Start</h2> </div>
