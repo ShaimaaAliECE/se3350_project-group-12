@@ -31,6 +31,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
   const [mergeCounter, setmergeCounter] = useState(0);
   const [instruct, setInst]=useState('');
   const [answer, setAns]=useState('');
+  const [startmsg, setStartMsg] = useState('enter "start" in the field above first, and then the first segment of the array!');
   const [done, setDone]=useState('');
   const [brief]=useState('Enter the segment of the array you expect to occur in the next step in the format "1,2,3,4,5": ');
   const [Messages, setErrorMessages] = useState({});
@@ -42,9 +43,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
       right: "correct!"
     });
     
-  //generate the random arrya for the user to work with
-    //edited so that it also takes a max numberfor an size len array with numbers from 1-max
-    const generateRandomArray = (len, max) => {
+    const generateRandomArray = (len, max=20) => {
       //fills array with every number from 1 to array length
     const largeArray = Array.from(Array(max + 1).keys()).slice(1)
 		const randomArray =[]
@@ -96,8 +95,7 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
 
     let inst = '';
 
-  inst='enter "start" in the field above first, and then the first segment of the array!'
-  setInst(inst); 
+
   storeArray(a1,a2,0,4);
   database.k1 = (a2.toString());
   setAns(database.k1);
@@ -558,6 +556,10 @@ const LevelTemplate = ({lives, setLives, level, setLevel}) => {
             <p>
             {renderrender}
             </p>
+      </div>
+
+      <div id='centered'>
+        <h2>{startmsg}</h2>
       </div>
 
       <div>

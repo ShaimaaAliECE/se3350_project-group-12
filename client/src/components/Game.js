@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import './Game.css'
 import LevelOne from './Levels/LevelOne'
-import LevelTwo from './Levels/LevelTwo'
+import LevelTwo_Main from './Levels/LevelTwo_Main'
 import LevelThree_Main from './Levels/LevelThree_Main'
 import LevelFour_Main from './Levels/LevelFour_Main'
 import LevelFive_Main from './Levels/LevelFive_Main'
@@ -64,9 +64,9 @@ const Game = () => {
          			case 1:
             			return <LevelOne/>
          			case 2:
-            			return <LevelTwo/>
+            			return <LevelTwo_Main lives = {lives} setLives = {setLives} setLevel = {setLevel} level = {level}/>
           			case 3:
-            			return <LevelThree_Main/>
+            			return <LevelThree_Main lives = {lives} setLives = {setLives} setLevel = {setLevel} level = {level}/>
                     case 4:
                         return <LevelFour_Main/>
                     case 5:
