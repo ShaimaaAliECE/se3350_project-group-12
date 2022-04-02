@@ -164,6 +164,7 @@ const LevelSix_Main = ({lives, setLives, level, setLevel}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
     let a0=blocks
     storeArray(a0,subBlocks[0],0,len-1)
 
@@ -226,14 +227,11 @@ const LevelSix_Main = ({lives, setLives, level, setLevel}) => {
   const handleSizeChange= (event)=>{
     event.preventDefault();
     var { size,range } = document.forms[0];
-    
-    //
-    
     let a= size.value;
     let b= range.value;
     console.log(parseInt(a,10));
     setLength(parseInt(a,10));
-    setnumRange(parseInt(a,10));
+    setnumRange(parseInt(b,10));
 
     generateRandomArray(len,numRange)
     let a0=blocks
@@ -430,15 +428,15 @@ const next = ()=>{
       }
 
       <b>
-          <div id = 'centered'><p>{sizeChange}</p></div>
+        <div id = 'centered'><b>{sizeChange}</b></div>
         <div> <h2>Enter 'start' to Start</h2> </div>
         <h2>{brief}</h2>
       </b>
 
       <div id = 'centered'>
-            <p>
-            {renderrender}
-            </p>
+            <p>{renderrender}</p>
+            
+            
       </div>
 
       <div>
