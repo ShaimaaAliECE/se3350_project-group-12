@@ -8,7 +8,7 @@ import LevelTwo from './Levels/LevelTwo'
 import LevelThree_Main from './Levels/LevelThree_Main'
 import LevelFour_Main from './Levels/LevelFour_Main'
 import LevelFive_Main from './Levels/LevelFive_Main'
-import Leveltemplate from './Levels/Leveltemplate'
+import LevelTemplate from './Levels/LevelTemplate'
 import WinnerLoser from './Levels/WinnerLoser'
 
 const Game = () => {
@@ -39,8 +39,9 @@ const Game = () => {
                 <p>
                 <button onClick = {() => {if(!(level==1)){setLevel(level-1)}}}>PREVIOUS LEVEL</button>
                 <button onClick = {() => {setLevel(level+1)}}>NEXT LEVEL</button>
+                <button></button>
+                <button onClick = {() => {if(!(lives==0)){setLives(lives-1)}}}>SUBTRACT LIFE</button>
                 <button onClick = {() => {setLives(lives+1)}}>ADD LIFE</button>
-                <button onClick = {() => {setLives(lives-1)}}>SUBTRACT LIFE</button>
                 </p>
                 
                 <div>
@@ -78,7 +79,7 @@ const Game = () => {
                     case 5:
                         return <LevelFive_Main/>
                     case 6:
-                        return <Leveltemplate/>
+                        return <LevelTemplate lives = {lives} setLives = {setLives}/>
 					default:
             			return <WinnerLoser lives = {lives} handleReset={() => handleReset()}/>
                         
@@ -89,7 +90,6 @@ const Game = () => {
 
             <div>
                 {next}
-                   
             </div>
             
 

@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import "../Login.css";
 
-const Leveltemplate = () => {
+const LevelTemplate = ({lives, setLives}) => {
 
   const [level, setLevel] = useState(1);
-  const [lives, setLives] = useState(3);
   const [len, setLength] = useState(10);
   const [blocks, setBlocks] = useState([]);
   const [subblocksa, setBlocksa] = useState([]);
@@ -56,6 +55,7 @@ const Leveltemplate = () => {
     setBlocks(randomArray)
 	}
 
+
   useEffect(() => {generateRandomArray(len)}, [len, level, lives, algo])
 
   const next = ()=>{//wip
@@ -86,8 +86,8 @@ const Leveltemplate = () => {
 
     let inst = '';
 
-  inst='start'
-  //setInst(inst); 
+  inst='enter "start" in the field above first, and then the first segment of the array!'
+  setInst(inst); 
   storeArray(a1,a2,0,4);
   database.k1 = (a2.toString());
   setAns(database.k1);
@@ -455,13 +455,18 @@ const Leveltemplate = () => {
         }
     }
 
+    
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     var { answer } = document.forms[0];
 
     if (database.k1 !== answer.value) {
+      event.preventDefault();
+      
       setErrorMessages({ name: "wrong", message: errors.wrong });
+      if(!(lives==0)){setLives(lives-1)};
     } 
     else {
       setErrorMessages({ name: "right", message: errors.right });
@@ -508,6 +513,7 @@ const Leveltemplate = () => {
 
       <div id='centered'>
         <h2>{brief}</h2>
+        {lives}
       </div>
 
       <div id = 'centered'>
@@ -649,4 +655,4 @@ const Leveltemplate = () => {
     )
   }
 
-export default Leveltemplate
+export default LevelTemplate
