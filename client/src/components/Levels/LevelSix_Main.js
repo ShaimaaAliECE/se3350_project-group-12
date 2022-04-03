@@ -3,6 +3,8 @@ import "../Login.css";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import Timer from './Timer'
 import WinnerLoser from './WinnerLoser'
+import SizeEdit from './SizeEdit';
+import AnswerForm from './AnswerForm';
 
 //you will need to use command 'npm install react-html-parser'and 'npm install buffer' to install additional packages
 
@@ -10,6 +12,7 @@ const LevelSix_Main = ({lives, setLives, level, setLevel}) => {
 
   const [len, setLength] = useState(10);
   const [numRange, setnumRange] = useState(10);
+  const [formnum, setform] = useState(1);
 
   const [blocks, setBlocks] = useState([]);
   const [algo, setAlgo] = useState('Merge');
@@ -161,10 +164,18 @@ const LevelSix_Main = ({lives, setLives, level, setLevel}) => {
     
    //-----------------------------------------------------------------------------------------------------------------------
    //form code
+  const preHandelSubmit =(event)=>{
+  event.preventDefault();
+  setAns(document.forms[0]); 
+  var { answer } = document.forms[0];
+  let a=answer.value
+  handleSubmit(a);
+  }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (a) => {
     
+    console.log("submited");
+    console.log(a);
     let a0=blocks
     storeArray(a0,subBlocks[0],0,len-1)
 
@@ -173,10 +184,10 @@ const LevelSix_Main = ({lives, setLives, level, setLevel}) => {
     if(!(selected==-1)){
       database.k1 = (subBlocks[selected].toString());
     }
-    var { answer } = document.forms[0];
+    //var { answer } = document.forms[0];
     answerArray(a0,0,len-1,subBlocks[0]);
     console.log(nextCounter);
-    if (database.k1 !== answer.value) {
+    if (database.k1 !== a) {
       setErrorMessages({ name: "wrong", message: errors.wrong });
       if(!(lives==0)){setLives(lives-1)};
       //stepBack1();
@@ -223,20 +234,28 @@ const LevelSix_Main = ({lives, setLives, level, setLevel}) => {
     </div>
   );
 
-  //size change form code
-  const handleSizeChange= (event)=>{
+  //size change form code not used here used in sizeEdit.js
+  
+  const  handleSizeChange= (event)=>{
     event.preventDefault();
     var { size,range } = document.forms[0];
     let a= size.value;
     let b= range.value;
-    console.log(parseInt(a,10));
-    setLength(parseInt(a,10));
-    setnumRange(parseInt(b,10));
+    setform(2);
+    setsizes(a,b);
+  }
+  
 
-    generateRandomArray(len,numRange)
-    let a0=blocks
-    mergesortArray(a0,0,(len-1));
-    
+const setsizes=(a,b)=>{
+  console.log('sizes set');
+  console.log(parseInt(a,10));
+  setLength(parseInt(a,10));
+  setnumRange(parseInt(b,10));
+
+  generateRandomArray(len,numRange)
+  let a0=blocks
+  mergesortArray(a0,0,(len-1));
+
 }
 
   const sizeChange=(
@@ -254,7 +273,6 @@ const LevelSix_Main = ({lives, setLives, level, setLevel}) => {
         </div>
       </form>
     </div>
-    
 
   );
   
@@ -423,20 +441,37 @@ const next = ()=>{
       })()}
       </div>
 
+      
+
       {
         lives === 0 && <WinnerLoser lives = {lives} handleReset={() => handleReset()} handleResetToStart={() => handleResetToStart()}/>
       }
 
       <b>
-        <div id = 'centered'><b>{sizeChange}</b></div>
+        
         <div> <h2>Enter 'start' to Start</h2> </div>
         <h2>{brief}</h2>
       </b>
 
+
       <div id = 'centered'>
-            <p>{renderrender}</p>
             
             
+            
+      </div>
+      <div>
+        set size
+        {(() => {
+        switch (formnum) {
+          case 1:
+            return <SizeEdit  formnum= {formnum} setform={setform} setsizes={setsizes} /> 
+          
+          case 2: 
+          {console.log('render form 2')}
+          return <div>hello<AnswerForm handleSubmit ={handleSubmit} renderrightMessage={renderrightMessage} renderwrongMessage={renderrightMessage} answer={answer} setAns={setAns}/></div>
+                  
+        }
+      })()}
       </div>
 
       <div>
