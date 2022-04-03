@@ -10,6 +10,7 @@ import LevelFive_Main from './Levels/LevelFive_Main'
 import LevelSix_Main from './Levels/LevelSix_Main'
 import LevelTemplate from './Levels/Leveltemplate'
 import WinnerLoser from './Levels/WinnerLoser'
+import Audio from './components/Audio'
 
 const Game = () => {
 
