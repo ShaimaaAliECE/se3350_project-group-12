@@ -33,29 +33,6 @@ const LevelOne = () => {
     const [mergeCounter, setmergeCounter] = useState(0);
     const [instruct, setInst]=useState('Click NEXT below to learn the steps of the mergesort algorithm! ');
 
-    //this function should return true or false and will be used for level one
-    const handleAnswer = () => {
-        
-        //if the solution is true 
-        if (answer) {
-            
-            
-        }
-        
-
-        //actually first need to grab the current array values and the answer values 
-        //then check if the response is true 
-        //if the answer is true then change level state to next level
-        //if the answer is false then change the lives state
-        //if lives < 1 then display losing message and reset the game 
-        
-
-    }
-
-    const handleAnswerChange = (event) => {   
-           
-        setAnswer(event.target.value)
-    }
     //used to create a random array of numbers
     const generateRandomArray = (len) => {
 
