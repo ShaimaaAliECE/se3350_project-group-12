@@ -47,11 +47,10 @@ const LevelSix_Main = ({lives, setLives, level, setLevel}) => {
 
   useEffect(() => {
     //generateRandomArray(len)
-    generateRandomArray(len,numRange)
     let a0=blocks
-    mergesortArray(a0,0,(len-1));
+        mergesortArray(a0,0,(len-1));
     
-    console.log (contents);
+    console.log ("rerun flag");
   
   }, [len, level, lives, algo])
 
@@ -67,6 +66,8 @@ const LevelSix_Main = ({lives, setLives, level, setLevel}) => {
   var time, timeSite;
     window.onload = function(){
         time = new Date();
+        generateRandomArray(len,numRange)
+        
     }
     window.onbeforeunload = function(){
         timeSite = new Date()-time;
@@ -176,26 +177,35 @@ const LevelSix_Main = ({lives, setLives, level, setLevel}) => {
     
     console.log("submited");
     console.log(a);
-    let a0=blocks
+    console.log(selected);
+    console.log (subBlocks);
+    console.log (blocks);
+    let a0=[]
+    storeArray(blocks,a0,0,len-1)
     storeArray(a0,subBlocks[0],0,len-1)
 
     answerArray(a0,0,len-1,subBlocks[0]);
     //console.log(subBlocks[selected].toString());
     if(!(selected==-1)){
       database.k1 = (subBlocks[selected].toString());
+      //setselect(0);
     }
+
     //var { answer } = document.forms[0];
     answerArray(a0,0,len-1,subBlocks[0]);
-    console.log(nextCounter);
+    
     if (database.k1 !== a) {
       setErrorMessages({ name: "wrong", message: errors.wrong });
       if(!(lives==0)){setLives(lives-1)};
-      //stepBack1();
-      //stepBack2();
+      console.log ('incorrect');
+      console.log (subBlocks);
+      console.log (blocks);
     } 
     else {
       setErrorMessages({ name: "right", message: errors.right });
       setNC(nextCounter+1);
+      console.log ('correct');
+      console.log (subBlocks);
       //answerArray(a0,0,len-1,subBlocks[0]);
       //console.log(subBlocks[selected].toString());
       next();
@@ -252,6 +262,7 @@ const setsizes=(a,b)=>{
   setLength(parseInt(a,10));
   setnumRange(parseInt(b,10));
 
+  console.log('flag w')
   generateRandomArray(len,numRange)
   let a0=blocks
   mergesortArray(a0,0,(len-1));
@@ -378,9 +389,9 @@ const next = ()=>{
 
 
   console.log (nextCounter);
-  console.log (blocks);
+  //console.log (blocks);
   //storeArray(a0,subBlocks[0],0,5)
-  console.log (subBlocks);
+  //console.log (subBlocks);
 }
 
  
@@ -460,7 +471,7 @@ const next = ()=>{
             
       </div>
       <div>
-        set size
+        
         {(() => {
         switch (formnum) {
           case 1:
@@ -468,7 +479,7 @@ const next = ()=>{
           
           case 2: 
           {console.log('render form 2')}
-          return <div>hello<AnswerForm handleSubmit ={handleSubmit} renderrightMessage={renderrightMessage} renderwrongMessage={renderrightMessage} answer={answer} setAns={setAns}/></div>
+          return <div><AnswerForm handleSubmit ={handleSubmit} renderrightMessage={renderrightMessage} renderwrongMessage={renderrightMessage} answer={answer} setAns={setAns}/></div>
                   
         }
       })()}

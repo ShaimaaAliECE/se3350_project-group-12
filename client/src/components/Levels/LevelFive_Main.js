@@ -44,7 +44,7 @@ const LevelFive_Main = ({lives, setLives, level, setLevel}) => {
 
   useEffect(() => {
     //generateRandomArray(len)
-    generateRandomArray(len,numRange)
+    
     let a0=blocks
     mergesortArray(a0,0,(len-1));
     
@@ -64,6 +64,7 @@ const LevelFive_Main = ({lives, setLives, level, setLevel}) => {
   var time, timeSite;
     window.onload = function(){
         time = new Date();
+        generateRandomArray(len,numRange)
     }
     window.onbeforeunload = function(){
         timeSite = new Date()-time;
