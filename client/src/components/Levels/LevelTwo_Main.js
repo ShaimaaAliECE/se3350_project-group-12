@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import "../Login.css";
 import Timer from './Timer'
 import WinnerLoser from './WinnerLoser'
+import Audio from './components/Audio'
+
 
 const LevelTwo_Main = ({lives, setLives, level, setLevel}) => {
 
@@ -34,6 +36,7 @@ const LevelTwo_Main = ({lives, setLives, level, setLevel}) => {
   const [done, setDone]=useState('');
   const [brief]=useState('Enter the segment of the array you expect to occur in the next step in the format "1,2,3,4,5": ');
   const [Messages, setErrorMessages] = useState({});
+  const [audioLevel, setLevel] = useState(level);
   const [database] = useState({
     "k1": "start"
     });
