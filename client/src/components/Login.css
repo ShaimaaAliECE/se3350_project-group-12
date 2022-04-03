@@ -33,11 +33,13 @@ input[type="submit"]:hover {
 .button-container {
   display: flex;
   justify-content: center;
+  border: 1px solid;
 }
 
 .login-form {
   background-color: white;
   padding: 2rem;
+  border: 1.5px solid;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
