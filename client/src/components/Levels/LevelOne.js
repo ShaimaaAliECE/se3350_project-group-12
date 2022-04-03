@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Timer from './Timer' 
+import Audio from './Audio'
 
 
 const LevelOne = () => {
@@ -31,6 +32,7 @@ const LevelOne = () => {
     const [algo, setAlgo] = useState('Merge');
     const [nextCounter,setNC]=useState(0);
     const [mergeCounter, setmergeCounter] = useState(0);
+    const [audioLevel, setLevel] = useState(1);
     const [instruct, setInst]=useState('Click NEXT below to learn the steps of the mergesort algorithm! ');
 
     //used to create a random array of numbers
