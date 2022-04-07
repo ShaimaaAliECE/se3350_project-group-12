@@ -65,7 +65,7 @@ const LevelTwo_Main = ({lives, setLives, level, setLevel}) => {
 	}
 
 
-  useEffect(() => {generateRandomArray(len)}, [len, level, lives, algo])
+  useEffect(() => {if(nextCounter==0){generateRandomArray(len)}}, [len, level, lives, algo])
 
   const next = ()=>{//wip
       
@@ -567,7 +567,7 @@ const LevelTwo_Main = ({lives, setLives, level, setLevel}) => {
       <div>
 
           <div className = 'question' id = 'centered'>
-          {answer}
+          
           {done}
           </div>
 

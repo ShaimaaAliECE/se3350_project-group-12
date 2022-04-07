@@ -46,7 +46,9 @@ const LevelSix_Main = ({lives, setLives, level, setLevel}) => {
   
 
   useEffect(() => {
-    //generateRandomArray(len)
+    if(selected==-1){
+      generateRandomArray(len,numRange)
+    }
     let a0=blocks
         mergesortArray(a0,0,(len-1));
     
@@ -263,7 +265,7 @@ const setsizes=(a,b)=>{
   setnumRange(parseInt(b,10));
 
   console.log('flag w')
-  generateRandomArray(len,numRange)
+  generateRandomArray(a,b)
   let a0=blocks
   mergesortArray(a0,0,(len-1));
 
